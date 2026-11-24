@@ -1,0 +1,1339 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href="data:," />
+    <title>Bank Soal Farmasi Semester 3 — Farmasi UGM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --surface-alt: #f2f6f2;
+        --text: #1c2420;
+        --dim: #5c6b5e;
+        --border: #e2e8e2;
+        --accent: #14532d;
+        --accent-hover: #0e4023;
+        --accent-text: #ffffff;
+        --amber: #b45309;
+        --amber-bg: #fdf6ec;
+        --danger: #b91c1c;
+        --danger-bg: #fdf0f0;
+        --ok: #15803d;
+        --ok-bg: #eef7f0;
+        --radius: 16px;
+      }
+      * { box-sizing: border-box; }
+      html, body { background: #ffffff; }
+      body {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+      button, [role="button"], select, summary,
+      input:not([type="checkbox"], [type="radio"]) { min-height: 2.25rem; }
+      button { font-family: inherit; cursor: pointer; }
+      input, select, textarea { font-family: inherit; font-size: 1rem; color: var(--text); }
+      button:focus-visible, input:focus-visible, select:focus-visible,
+      textarea:focus-visible, a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      .wrap { max-width: 48rem; margin: 0 auto; padding: 1.25rem 1rem 7rem; }
+      h1 { font-size: 1.875rem; font-weight: 800; line-height: 1.2; margin: 0.25rem 0 0; letter-spacing: -0.01em; }
+      h1.page { font-size: 1.5rem; }
+      h2 { font-size: 1.125rem; font-weight: 700; margin: 0; }
+      .dim { color: var(--dim); }
+      .small { font-size: 0.875rem; }
+      .xs { font-size: 0.75rem; }
+      .mt1 { margin-top: 0.25rem; } .mt2 { margin-top: 0.5rem; } .mt3 { margin-top: 0.75rem; }
+      .mt4 { margin-top: 1rem; } .mt5 { margin-top: 1.25rem; } .mt6 { margin-top: 1.5rem; } .mt8 { margin-top: 2rem; }
+
+      .card {
+        border: 1px solid var(--border);
+        background: var(--surface);
+        border-radius: var(--radius);
+      }
+      .chip {
+        display: inline-block; border: 1px solid var(--border); color: var(--dim);
+        border-radius: 999px; padding: 0.125rem 0.55rem; font-size: 0.75rem; font-weight: 500;
+        max-width: 100%; overflow-wrap: anywhere;
+      }
+      .chip.amber { color: var(--amber); border-color: var(--amber); }
+      .chip.danger { color: var(--danger); border-color: var(--danger); }
+      .chip.ok { color: var(--ok); border-color: var(--ok); }
+      .chips { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; }
+
+      .btn {
+        border: 1px solid var(--border); background: var(--surface); color: var(--text);
+        border-radius: 0.75rem; padding: 0.5rem 1rem; font-size: 0.875rem; font-weight: 600;
+      }
+      .btn-accent {
+        background: var(--accent); border-color: var(--accent); color: var(--accent-text);
+      }
+      .btn-accent:hover { background: var(--accent-hover); }
+      .btn-danger-o { border-color: var(--danger); color: var(--danger); background: var(--surface); }
+      .btn:disabled { opacity: 0.5; cursor: default; }
+      .btn-big {
+        width: 100%; border-radius: var(--radius); padding: 0.875rem 1rem;
+        font-size: 1.125rem; font-weight: 800; transition: transform 0.05s ease;
+      }
+      .btn-big:active { transform: scale(0.99); }
+
+      .pill {
+        border: 1px solid var(--border); background: var(--surface); color: var(--text);
+        border-radius: 999px; padding: 0.5rem 0.875rem; font-size: 0.875rem; font-weight: 600;
+      }
+      .pill[aria-pressed="true"] {
+        border-color: var(--accent); background: var(--accent); color: var(--accent-text);
+      }
+      .pillrow { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+      .countbtn {
+        min-width: 3.5rem; border: 1px solid var(--border); background: var(--surface);
+        border-radius: 0.75rem; padding: 0.5rem 0.75rem; font-size: 0.875rem; font-weight: 700;
+      }
+      .countbtn[aria-pressed="true"] {
+        border-color: var(--accent); background: var(--accent); color: var(--accent-text);
+      }
+      .modegrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem; }
+      .modebtn {
+        border: 1px solid var(--border); background: var(--surface); border-radius: 0.75rem;
+        padding: 0.75rem; text-align: left;
+      }
+      .modebtn[aria-pressed="true"] { border-color: var(--accent); background: var(--surface-alt); }
+      .modebtn .t { font-weight: 700; }
+      .modebtn .d { display: block; margin-top: 0.125rem; font-size: 0.75rem; color: var(--dim); }
+
+      .statgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 1.25rem; }
+      .stat { text-align: center; padding: 0.75rem; }
+      .stat .n { font-size: 1.5rem; font-weight: 800; }
+      .stat .l { font-size: 0.75rem; color: var(--dim); }
+
+      .wrongbtn {
+        margin-top: 0.75rem; display: flex; width: 100%; align-items: center; justify-content: space-between;
+        border: 1px solid var(--amber); background: var(--surface); color: var(--amber);
+        border-radius: var(--radius); padding: 0.75rem 1rem; font-weight: 600; text-align: left; font-size: 1rem;
+      }
+      .bar { margin-top: 0.5rem; height: 0.5rem; border-radius: 999px; background: var(--surface-alt); overflow: hidden; }
+      .bar > div { height: 100%; border-radius: 999px; background: var(--accent); transition: width 0.5s ease; }
+      .subjcard { padding: 0.875rem; }
+      .subjhead { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
+      .subjhead .nm { font-weight: 700; }
+      .stack > * + * { margin-top: 0.75rem; }
+      .histrow {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0.625rem 0.875rem;
+      }
+      .histrow .sc { font-weight: 800; }
+
+      .field {
+        width: 100%; border: 1px solid var(--border); background: var(--surface);
+        border-radius: 0.75rem; padding: 0.625rem 0.875rem;
+      }
+      .filtergrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.75rem; }
+      label.flabel { display: block; margin-top: 1rem; font-size: 0.875rem; font-weight: 700; }
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+      }
+
+      .qcard { overflow: hidden; }
+      .qhead { width: 100%; background: none; border: 0; padding: 0.875rem 1rem; text-align: left; }
+      .qstem { display: block; margin-top: 0.5rem; font-weight: 600; line-height: 1.45; }
+      .qbody { border-top: 1px solid var(--border); padding: 0.875rem 1rem; }
+      .optlist { list-style: none; margin: 0; padding: 0; }
+      .optlist li {
+        border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.5rem 0.75rem;
+        font-size: 0.875rem; margin-top: 0.375rem;
+      }
+      .optlist li:first-child { margin-top: 0; }
+      .optlist li.key { border-color: var(--ok); background: var(--surface-alt); font-weight: 600; }
+      .explain {
+        margin-top: 0.75rem; background: var(--surface-alt); border-radius: 0.75rem; padding: 0.75rem;
+      }
+      .explain .h {
+        font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.05em; color: var(--accent); margin: 0;
+      }
+      .explain p { margin: 0.25rem 0 0; font-size: 0.875rem; line-height: 1.6; }
+      .keypoint {
+        margin-top: 0.5rem; border-left: 4px solid var(--amber); padding-left: 0.625rem;
+        font-size: 0.875rem; font-weight: 600;
+      }
+      .qactions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+      .empty {
+        margin-top: 2rem; border: 1px dashed var(--border); border-radius: var(--radius);
+        padding: 1.5rem; text-align: center;
+      }
+
+      .sesshead { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+      .qbig { padding: 1.25rem; border-radius: 1.5rem; margin-top: 1rem; }
+      .qbig h2 { font-size: 1.125rem; line-height: 1.45; margin-top: 0.75rem; }
+      .optbtn {
+        display: flex; width: 100%; align-items: flex-start; gap: 0.75rem;
+        border: 2px solid var(--border); background: var(--surface); border-radius: var(--radius);
+        padding: 0.75rem 1rem; text-align: left; font-weight: 500; font-size: 1rem;
+        margin-top: 0.5rem; transition: transform 0.05s ease;
+      }
+      .optbtn:active { transform: scale(0.99); }
+      .optbtn:disabled { cursor: default; }
+      .optbtn .letter {
+        display: flex; height: 1.75rem; width: 1.75rem; flex-shrink: 0; align-items: center;
+        justify-content: center; border-radius: 999px; border: 1px solid var(--border);
+        font-weight: 800; color: var(--dim);
+      }
+      .optbtn .txt { padding-top: 0.125rem; line-height: 1.4; }
+      .optbtn .mark { margin-left: auto; padding-top: 0.125rem; font-weight: 700; }
+      .optbtn.sel { border-color: var(--accent); background: var(--surface-alt); }
+      .optbtn.sel .letter { border-color: var(--accent); color: var(--accent); }
+      .optbtn.key { border-color: var(--ok); background: var(--surface-alt); }
+      .optbtn.key .letter { border-color: var(--ok); color: var(--ok); }
+      .optbtn.wrong { border-color: var(--danger); background: var(--surface-alt); }
+      .optbtn.wrong .letter { border-color: var(--danger); color: var(--danger); }
+      .feedback { margin-top: 1rem; border: 2px solid var(--border); background: var(--surface-alt); border-radius: var(--radius); padding: 1rem; }
+      .feedback.ok { border-color: var(--ok); }
+      .feedback.bad { border-color: var(--danger); }
+      .feedback .verdict { font-size: 1.125rem; font-weight: 800; }
+      .feedback .verdict.ok { color: var(--ok); }
+      .feedback .verdict.bad { color: var(--danger); }
+      .sessnav { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; }
+      .sessnav .grow { flex: 1; }
+      .sessnav button { padding: 0.75rem 1rem; border-radius: 0.75rem; font-size: 1rem; }
+
+      .result { margin-top: 1rem; border-radius: 1.5rem; padding: 1.5rem; text-align: center; }
+      .result .pct { font-size: 3rem; font-weight: 800; color: var(--accent); line-height: 1; }
+      .bedah { padding: 1rem; }
+      .bedah .stem { margin-top: 0.5rem; font-weight: 600; line-height: 1.45; }
+
+      .aisec { margin-top: 1.25rem; border: 1px solid var(--amber); border-radius: 1.5rem; padding: 1.25rem; }
+      .btn-amber {
+        width: 100%; margin-top: 1rem; border: 1px solid var(--amber); background: var(--amber);
+        color: #ffffff; border-radius: var(--radius); padding: 0.75rem 1rem; font-weight: 800; font-size: 1rem;
+      }
+      .btn-amber:disabled { opacity: 0.6; }
+      .optrow { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+      .optrow input[type="radio"] { height: 1.25rem; width: 1.25rem; flex-shrink: 0; accent-color: #14532d; }
+      .optrow .ltr { font-weight: 800; }
+      .msg-err { color: var(--danger); font-size: 0.875rem; font-weight: 500; margin-top: 0.75rem; }
+      .msg-ok { color: var(--ok); font-size: 0.875rem; font-weight: 500; margin-top: 0.75rem; }
+      .msg-info { color: var(--accent); font-size: 0.875rem; font-weight: 500; margin-top: 0.75rem; }
+
+      .tools { margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+      .tools .row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+
+      footer.credit { margin-top: 3rem; border-top: 1px solid var(--border); padding: 1.5rem 0 0.5rem; text-align: center; }
+      footer.credit .pre {
+        font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.18em; color: var(--dim); margin: 0;
+      }
+      footer.credit .by { margin: 0.375rem 0 0; font-size: 1rem; color: var(--dim); }
+      footer.credit .by strong { font-size: 1.125rem; font-weight: 800; letter-spacing: -0.01em; color: var(--accent); }
+      footer.credit .sub { margin: 0.25rem 0 0; font-size: 0.75rem; color: var(--dim); }
+
+      nav.tabbar {
+        position: fixed; inset-inline: 0; bottom: 0; z-index: 20;
+        border-top: 1px solid var(--border); background: var(--surface);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      nav.tabbar .grid { max-width: 48rem; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); }
+      nav.tabbar button {
+        display: flex; flex-direction: column; align-items: center; gap: 0.125rem;
+        padding: 0.625rem 0.25rem; background: none; border: 0;
+        font-size: 0.75rem; font-weight: 600; color: var(--dim); min-height: 3rem;
+      }
+      nav.tabbar button[aria-current="page"] { color: var(--accent); }
+      nav.tabbar .ic { font-size: 1.125rem; line-height: 1; }
+      .hidden { display: none !important; }
+      .subject-select { display: none; }
+      @media (max-width: 640px) {
+        /* Di layar sempit, nama mata kuliah panjang membuat deretan pill
+           sangat tinggi — pakai pemilih ringkas agar tombol sesi tidak
+           tertutup bilah navigasi bawah. */
+        .pillrow.subjects { display: none; }
+        .subject-select { display: block; margin-top: 0.5rem; }
+        .wrap { padding-top: 1rem; }
+        h1 { font-size: 1.75rem; }
+        .stat { padding: 0.5rem 0.25rem; }
+        .stat .n { font-size: 1.3rem; }
+        .statgrid { margin-top: 1rem; gap: 0.5rem; }
+      }
+      @media (max-width: 420px) {
+        .subjhead { flex-direction: column; gap: 0.125rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap" id="app" aria-live="off"></main>
+    <nav class="tabbar" id="tabbar" aria-label="Navigasi utama">
+      <div class="grid">
+        <button type="button" data-nav="beranda"><span class="ic" aria-hidden="true">🏠</span>Beranda</button>
+        <button type="button" data-nav="bank"><span class="ic" aria-hidden="true">📚</span>Bank Soal</button>
+        <button type="button" data-nav="tambah"><span class="ic" aria-hidden="true">➕</span>Tambah Soal</button>
+      </div>
+    </nav>
+
+    <script>
+      "use strict";
+      /* Bank soal awal: 60 soal untuk mahasiswa Farmasi UGM semester 3
+         (Kurikulum 2022), berporos pada tiga praktikum semester III —
+         FAF221302, FAF221305, FAF221307 — plus Biokimia, Mikrobiologi
+         Farmasi, Farmakognosi, dan Farmasi Fisika. Disusun dari konsep
+         inti buku teks standar (Farmakope Indonesia, Goodman & Gilman,
+         Katzung, Aulton, Sinko, Jawetz); soal latihan susunan sendiri,
+         bukan soal ujian resmi UGM. */
+      const SEED =
+[{"id": 1, "code": "FK-01", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Farmakokinetik", "difficulty": "Mudah", "stem": "Bioavailabilitas suatu obat yang diberikan secara intravena (IV) adalah…", "options": ["100%, karena obat langsung masuk ke sirkulasi sistemik", "50%, karena sebagian obat terikat protein plasma", "Bergantung pada efek lintas pertama (first-pass effect) di hati", "0%, karena obat IV tidak mengalami absorpsi sama sekali"], "answerIndex": 0, "explanation": "Pemberian IV memasukkan obat langsung ke dalam sirkulasi sistemik sehingga tidak ada tahap absorpsi dan tidak ada metabolisme lintas pertama. Karena seluruh dosis mencapai sirkulasi, bioavailabilitasnya didefinisikan sebagai 100% (F = 1) dan menjadi pembanding bagi rute pemberian lain.", "keyPoint": "Rute IV → bioavailabilitas selalu 100%.", "source": "bank"}, {"id": 2, "code": "FK-02", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Farmakokinetik", "difficulty": "Sedang", "stem": "Efek lintas pertama (first-pass effect) paling besar pengaruhnya pada obat yang diberikan melalui rute…", "options": ["Intravena", "Oral", "Transdermal", "Sublingual"], "answerIndex": 1, "explanation": "Obat oral yang diserap dari saluran cerna dialirkan lewat vena porta ke hati sebelum mencapai sirkulasi sistemik, sehingga sebagian obat sudah dimetabolisme di dinding usus dan hati. Rute IV melewati proses ini, sedangkan sublingual dan transdermal juga menghindari vena porta sehingga first-pass effect-nya kecil.", "keyPoint": "First-pass effect terutama masalah pada obat oral.", "source": "bank"}, {"id": 3, "code": "FK-03", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Farmakodinamik", "difficulty": "Sedang", "stem": "Penambahan antagonis kompetitif terhadap suatu agonis akan mengubah kurva dosis–respons agonis menjadi…", "options": ["Bergeser ke kiri tanpa mengubah respons maksimal", "Bergeser ke kanan tanpa mengubah respons maksimal", "Bergeser ke kanan dan respons maksimal menurun", "Respons maksimal naik tanpa pergeseran kurva"], "answerIndex": 1, "explanation": "Antagonis kompetitif berikatan reversibel pada sisi aktif reseptor yang sama dengan agonis. Karena ikatannya dapat disaingi, menaikkan konsentrasi agonis dapat mengembalikan respons maksimal (Emaks tetap), tetapi dibutuhkan dosis agonis yang lebih besar sehingga kurva bergeser sejajar ke kanan dan EC50 meningkat.", "keyPoint": "Antagonis kompetitif: kurva geser kanan, Emaks tetap.", "source": "bank"}, {"id": 4, "code": "FK-04", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Farmakodinamik", "difficulty": "Mudah", "stem": "Senyawa yang berikatan pada reseptor tetapi tidak menimbulkan respons, dan justru menghambat kerja agonis, disebut…", "options": ["Agonis penuh", "Agonis parsial", "Antagonis", "Agonis invers"], "answerIndex": 2, "explanation": "Antagonis memiliki afinitas terhadap reseptor tetapi efikasi intrinsiknya nol, sehingga tidak menimbulkan respons dan mencegah agonis bekerja. Agonis parsial tetap menimbulkan respons submaksimal, sedangkan agonis invers menurunkan aktivitas konstitutif reseptor.", "keyPoint": "Afinitas ada, efikasi nol → antagonis.", "source": "bank"}, {"id": 5, "code": "FK-05", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Farmakokinetik", "difficulty": "Sedang", "stem": "Konsentrasi tunak (steady state) pada pemberian obat berulang dengan dosis tetap umumnya tercapai setelah…", "options": ["1 kali waktu paruh", "2 kali waktu paruh", "4–5 kali waktu paruh", "10 kali waktu paruh"], "answerIndex": 2, "explanation": "Pada eliminasi orde satu, setiap waktu paruh menutup sekitar 50% sisa jarak menuju konsentrasi tunak: setelah 4 waktu paruh tercapai ±94% dan setelah 5 waktu paruh ±97%, yang secara klinis dianggap sudah tunak. Prinsip yang sama berlaku sebaliknya: obat hampir seluruhnya tereliminasi setelah 4–5 waktu paruh sejak pemberian dihentikan.", "keyPoint": "Steady state ≈ 4–5 × t½.", "source": "bank"}, {"id": 6, "code": "FK-06", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Farmakokinetik", "difficulty": "Sulit", "stem": "Obat dengan volume distribusi (Vd) yang sangat besar menunjukkan bahwa obat tersebut…", "options": ["Sebagian besar tetap berada di dalam plasma darah", "Banyak terdistribusi dan terikat di jaringan di luar plasma", "Cepat diekskresikan melalui ginjal", "Tidak dapat menembus membran sel sama sekali"], "answerIndex": 1, "explanation": "Vd adalah volume semu yang menghubungkan jumlah obat dalam tubuh dengan konsentrasi plasma. Vd yang besar (jauh melampaui volume plasma, bahkan volume cairan tubuh total) berarti konsentrasi plasma rendah karena obat banyak keluar dari pembuluh darah dan terakumulasi/terikat di jaringan, misalnya obat sangat lipofilik atau terikat kuat pada jaringan.", "keyPoint": "Vd besar = obat banyak bersembunyi di jaringan.", "source": "bank"}, {"id": 7, "code": "FK-07", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Farmakokinetik", "difficulty": "Sedang", "stem": "Pada kinetika eliminasi orde satu, yang terjadi adalah…", "options": ["Jumlah obat yang tereliminasi per satuan waktu selalu tetap", "Persentase (fraksi) obat yang tereliminasi per satuan waktu tetap", "Waktu paruh obat bertambah seiring naiknya dosis", "Eliminasi tidak bergantung pada konsentrasi obat"], "answerIndex": 1, "explanation": "Pada orde satu, laju eliminasi sebanding dengan konsentrasi: fraksi obat yang hilang per satuan waktu tetap, sehingga waktu paruh konstan berapa pun dosisnya. Sebaliknya pada orde nol (misalnya etanol dosis tinggi), jumlah yang tereliminasi per satuan waktu tetap karena enzim eliminasi jenuh.", "keyPoint": "Orde satu: fraksi tetap, t½ konstan.", "source": "bank"}, {"id": 8, "code": "FK-08", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Farmakodinamik", "difficulty": "Mudah", "stem": "Indeks terapi suatu obat dihitung dari perbandingan…", "options": ["Dosis efektif median (ED50) terhadap dosis letal median (LD50)", "Dosis toksik median (TD50) terhadap dosis efektif median (ED50)", "Konsentrasi plasma puncak terhadap konsentrasi minimum efektif", "Dosis muatan (loading dose) terhadap dosis pemeliharaan"], "answerIndex": 1, "explanation": "Indeks terapi = TD50/ED50 (pada hewan uji sering dipakai LD50/ED50). Semakin besar indeks terapi, semakin lebar jarak antara dosis yang bermanfaat dan dosis yang menimbulkan toksisitas, sehingga obat dinilai semakin aman. Obat seperti digoksin dan warfarin berindeks terapi sempit sehingga perlu pemantauan ketat.", "keyPoint": "Indeks terapi = TD50 ÷ ED50; makin besar makin aman.", "source": "bank"}, {"id": 9, "code": "FSP-01", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Granulasi", "difficulty": "Mudah", "stem": "Tujuan utama pembuatan granul sebelum pencetakan tablet adalah…", "options": ["Menutupi rasa pahit bahan aktif", "Memperbaiki sifat alir dan kompresibilitas massa tablet", "Mempercepat waktu hancur tablet di lambung", "Meningkatkan kelarutan bahan aktif dalam air"], "answerIndex": 1, "explanation": "Serbuk halus umumnya mengalir buruk dan sulit dikompresi merata, menyebabkan variasi bobot tablet. Granulasi menggumpalkan partikel menjadi granul yang lebih besar dan seragam sehingga aliran ke dalam die lancar dan tablet yang dicetak kompak serta seragam bobotnya.", "keyPoint": "Granulasi = memperbaiki aliran + kompresibilitas.", "source": "bank"}, {"id": 10, "code": "FSP-02", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Eksipien Tablet", "difficulty": "Mudah", "stem": "Bahan tambahan yang berfungsi membantu tablet hancur menjadi partikel kecil setelah kontak dengan cairan disebut…", "options": ["Pengikat (binder)", "Penghancur (disintegran)", "Pelincir (lubrikan)", "Pengisi (diluent)"], "answerIndex": 1, "explanation": "Disintegran bekerja dengan menyerap air dan mengembang (swelling) atau menimbulkan aksi kapiler sehingga tablet pecah menjadi granul dan partikel halus, mempercepat pelepasan zat aktif. Contohnya sodium starch glycolate (SSG) dan croscarmellose sodium. Pengikat justru menyatukan granul, lubrikan mengurangi gesekan saat pencetakan, dan pengisi menambah bobot massa tablet.", "keyPoint": "Disintegran memecah tablet; contoh: SSG, croscarmellose.", "source": "bank"}, {"id": 11, "code": "FSP-03", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Eksipien Tablet", "difficulty": "Sedang", "stem": "Magnesium stearat dalam formulasi tablet berfungsi sebagai lubrikan. Pemakaian yang berlebihan dapat menyebabkan…", "options": ["Tablet menjadi terlalu keras dan tidak hancur", "Terbentuk lapisan hidrofobik yang memperlambat disintegrasi dan disolusi", "Granul menjadi terlalu lembab dan lengket pada punch", "Bobot tablet menjadi tidak seragam"], "answerIndex": 1, "explanation": "Magnesium stearat bersifat hidrofobik. Bila kadarnya terlalu tinggi atau pencampuran terlalu lama, ia melapisi permukaan granul secara berlebihan sehingga air sulit membasahi tablet: waktu hancur dan laju disolusi menurun. Kadar lazimnya hanya 0,25–1% dan dicampurkan pada tahap akhir dalam waktu singkat.", "keyPoint": "Mg stearat berlebih → tablet sulit dibasahi, disolusi lambat.", "source": "bank"}, {"id": 12, "code": "FSP-04", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Evaluasi Tablet", "difficulty": "Sedang", "stem": "Uji kerapuhan (friability) tablet dengan friabilator umumnya dinyatakan memenuhi syarat apabila susut bobot…", "options": ["Tidak lebih dari 0,1%", "Tidak lebih dari 1%", "Tidak lebih dari 5%", "Tidak lebih dari 10%"], "answerIndex": 1, "explanation": "Uji friability menilai ketahanan permukaan tablet terhadap gesekan dan goncangan selama pengemasan dan distribusi. Tablet diputar dalam friabilator (25 rpm selama 4 menit = 100 putaran), lalu ditimbang kembali; syarat Farmakope adalah susut bobot tidak lebih dari 1% dan tidak ada tablet yang retak atau pecah.", "keyPoint": "Friability lulus bila susut bobot ≤ 1%.", "source": "bank"}, {"id": 13, "code": "FSP-05", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Evaluasi Tablet", "difficulty": "Sedang", "stem": "Menurut Farmakope Indonesia, waktu hancur tablet tidak bersalut dalam medium air umumnya tidak lebih dari…", "options": ["5 menit", "15 menit", "30 menit", "60 menit"], "answerIndex": 1, "explanation": "Uji waktu hancur menilai kemampuan tablet pecah dalam medium cair pada suhu 37 ± 2 °C. Untuk tablet tidak bersalut syaratnya tidak lebih dari 15 menit, sedangkan tablet salut gula umumnya ≤ 60 menit dan tablet salut enterik tidak boleh hancur di medium asam tetapi hancur di medium basa dalam batas waktunya.", "keyPoint": "Tablet tak bersalut: hancur ≤ 15 menit.", "source": "bank"}, {"id": 14, "code": "FSP-06", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Cacat Tablet", "difficulty": "Sedang", "stem": "Cacat tablet berupa terlepasnya bagian atas (tutup) tablet dari badan tablet disebut…", "options": ["Laminasi", "Capping", "Sticking", "Mottling"], "answerIndex": 1, "explanation": "Capping adalah lepasnya bagian atas atau bawah tablet secara horizontal, sering disebabkan udara yang terjebak saat kompresi, granul terlalu kering/halus, atau tekanan pencetakan dan kecepatan mesin yang tidak tepat. Laminasi adalah pemisahan tablet menjadi dua lapis atau lebih, sticking adalah melekatnya massa pada permukaan punch, dan mottling adalah warna tablet yang tidak merata.", "keyPoint": "Capping = tutup tablet terlepas.", "source": "bank"}, {"id": 15, "code": "FSP-07", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Eksipien Tablet", "difficulty": "Mudah", "stem": "Bahan pengisi (diluent) yang paling umum digunakan pada tablet dosis kecil adalah…", "options": ["Laktosa", "Talkum", "Magnesium stearat", "Aerosil"], "answerIndex": 0, "explanation": "Pengisi menambah volume massa tablet bila dosis zat aktif kecil agar tablet mudah dicetak dan ditangani. Laktosa paling lazim karena sifat alir dan kompresibilitasnya baik serta relatif inert. Talkum dan magnesium stearat adalah lubrikan/glidan, sedangkan aerosil (silika koloidal) berfungsi sebagai glidan penyerap kelembaban.", "keyPoint": "Pengisi klasik tablet: laktosa.", "source": "bank"}, {"id": 16, "code": "FSP-08", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Granulasi", "difficulty": "Sulit", "stem": "Metode cetak langsung (direct compression) paling cocok untuk zat aktif yang…", "options": ["Sangat higroskopis dan tidak stabil terhadap panas", "Memiliki sifat alir dan kompresibilitas yang baik serta dosis relatif besar", "Berdosis sangat kecil dan tidak larut air", "Harus digranulasi basah agar stabil"], "answerIndex": 1, "explanation": "Cetak langsung melewatkan tahap granulasi: serbuk dicampur lalu langsung dicetak. Metode ini cepat dan menghindari panas/lembab, tetapi menuntut bahan (dan pengisi khusus seperti laktosa spray-dried atau mikrokristalin selulosa) dengan aliran dan kompresibilitas baik. Zat berdosis sangat kecil berisiko tidak seragam kandungannya, sehingga granulasi sering lebih dipilih.", "keyPoint": "Cetak langsung menuntut serbuk yang mengalir & terkompresi baik.", "source": "bank"}, {"id": 17, "code": "KA-01", "subject": "Kimia Analisis II (FAF221307)", "topic": "Spektrofotometri UV-Vis", "difficulty": "Mudah", "stem": "Hukum Beer–Lambert menyatakan hubungan absorbansi (A) dengan konsentrasi (c) dan tebal kuvet (b) sebagai…", "options": ["A = ε · b · c", "A = ε + b + c", "A = ε / (b · c)", "A = b / (ε · c)"], "answerIndex": 0, "explanation": "Hukum Beer–Lambert: A = εbc, dengan ε = absorptivitas molar, b = tebal lapisan larutan (cm), dan c = konsentrasi. Artinya absorbansi berbanding lurus dengan konsentrasi pada tebal kuvet tetap — dasar pembuatan kurva kalibrasi pada spektrofotometri UV-Vis.", "keyPoint": "A = εbc; absorbansi ∝ konsentrasi.", "source": "bank"}, {"id": 18, "code": "KA-02", "subject": "Kimia Analisis II (FAF221307)", "topic": "Spektrofotometri UV-Vis", "difficulty": "Sedang", "stem": "Jika konsentrasi larutan analit digandakan (tebal kuvet tetap), maka absorbansinya akan…", "options": ["Tetap, karena absorbansi hanya ditentukan alat", "Menjadi dua kali lipat", "Menjadi setengahnya", "Naik empat kali lipat"], "answerIndex": 1, "explanation": "Sesuai A = εbc, pada b dan ε yang tetap, absorbansi berbanding lurus dengan konsentrasi. Konsentrasi dua kali lipat menghasilkan absorbansi dua kali lipat, selama masih berada dalam rentang linear alat (umumnya A ≈ 0,2–0,8 memberikan ketelitian terbaik).", "keyPoint": "Hubungan A–c linear pada rentang kerja alat.", "source": "bank"}, {"id": 19, "code": "KA-03", "subject": "Kimia Analisis II (FAF221307)", "topic": "Titrimetri", "difficulty": "Sedang", "stem": "Penetapan kadar kalsium dan magnesium (kesadahan air) secara titrimetri umumnya menggunakan titran…", "options": ["Asam klorida 0,1 N", "EDTA (dinatrium edetat)", "Perak nitrat", "Kalium permanganat"], "answerIndex": 1, "explanation": "EDTA membentuk kompleks khelat 1:1 yang stabil dengan ion logam seperti Ca²⁺ dan Mg²⁺, sehingga dipakai pada titrasi kompleksometri. Indikator yang lazim adalah Eriochrome Black T (EBT) pada pH ±10 (bufer amonia): warna berubah dari merah anggur (kompleks logam–indikator) menjadi biru (indikator bebas) pada titik akhir.", "keyPoint": "Kompleksometri: titran EDTA, indikator EBT.", "source": "bank"}, {"id": 20, "code": "KA-04", "subject": "Kimia Analisis II (FAF221307)", "topic": "Titrimetri", "difficulty": "Mudah", "stem": "Indikator fenolftalein pada titrasi asam–basa berubah warna pada rentang pH sekitar…", "options": ["3,1–4,4 (kuning ke merah)", "4,2–6,3 (merah ke kuning)", "6,2–7,6 (kuning ke biru)", "8,2–10,0 (tak berwarna ke merah muda)"], "answerIndex": 3, "explanation": "Fenolftalein tidak berwarna dalam suasana asam dan menjadi merah muda/ungu muda pada pH 8,2–10,0, sehingga cocok untuk titrasi asam lemah dengan basa kuat yang titik ekivalennya bersifat basa. Metil jingga berentang 3,1–4,4 dan metil merah 4,2–6,3, keduanya untuk titik akhir yang lebih asam.", "keyPoint": "Fenolftalein: pH 8,2–10, tak berwarna → merah muda.", "source": "bank"}, {"id": 21, "code": "KA-05", "subject": "Kimia Analisis II (FAF221307)", "topic": "Kromatografi", "difficulty": "Mudah", "stem": "Pada kromatografi lapis tipis (KLT), nilai Rf suatu noda didefinisikan sebagai…", "options": ["Jarak tempuh fase gerak dibagi jarak tempuh noda", "Jarak tempuh noda dibagi jarak tempuh fase gerak (garis depan pelarut)", "Jarak tempuh noda dikali jarak tempuh fase gerak", "Selisih jarak tempuh fase gerak dan noda"], "answerIndex": 1, "explanation": "Rf (retardation factor) = jarak yang ditempuh noda analit ÷ jarak yang ditempuh garis depan fase gerak, diukur dari garis awal yang sama. Nilainya selalu antara 0 dan 1 dan khas untuk suatu senyawa pada sistem fase diam–fase gerak tertentu, sehingga dipakai untuk identifikasi kualitatif.", "keyPoint": "Rf = jarak noda ÷ jarak pelarut (0–1).", "source": "bank"}, {"id": 22, "code": "KA-06", "subject": "Kimia Analisis II (FAF221307)", "topic": "Kromatografi", "difficulty": "Sedang", "stem": "Pada HPLC fase terbalik (reversed phase) yang paling umum digunakan, kombinasi fase diam dan fase geraknya adalah…", "options": ["Fase diam polar (silika), fase gerak nonpolar (heksana)", "Fase diam nonpolar (C18/ODS), fase gerak polar (air–metanol/asetonitril)", "Fase diam gas, fase gerak cairan", "Fase diam ion-exchange, fase gerak gas"], "answerIndex": 1, "explanation": "HPLC fase terbalik memakai fase diam nonpolar berupa silika yang dimodifikasi rantai oktadesil (C18/ODS) dan fase gerak polar seperti campuran air dengan metanol atau asetonitril. Senyawa yang lebih nonpolar tertahan lebih lama karena lebih kuat berinteraksi dengan fase diam. Kebalikannya, fase normal memakai fase diam polar dan fase gerak nonpolar.", "keyPoint": "Fase terbalik: C18 nonpolar + fase gerak polar.", "source": "bank"}, {"id": 23, "code": "KA-07", "subject": "Kimia Analisis II (FAF221307)", "topic": "Validasi Metode", "difficulty": "Sedang", "stem": "Perbedaan presisi dan akurasi dalam validasi metode analisis adalah…", "options": ["Presisi menilai kedekatan hasil dengan nilai sebenarnya; akurasi menilai kedekatan antarhasil berulang", "Presisi menilai kedekatan antarhasil pengukuran berulang; akurasi menilai kedekatan hasil dengan nilai sebenarnya", "Keduanya menilai hal yang sama, hanya istilahnya berbeda", "Presisi hanya untuk metode kualitatif; akurasi hanya untuk kuantitatif"], "answerIndex": 1, "explanation": "Presisi (kecermatan/keterulangan) menggambarkan seberapa dekat hasil-hasil pengukuran berulang satu sama lain, dinyatakan misalnya dengan simpangan baku relatif (%RSD). Akurasi (ketepatan) menggambarkan kedekatan hasil rata-rata terhadap nilai sebenarnya, dinyatakan misalnya dengan persen perolehan kembali (recovery). Metode yang baik harus presisi sekaligus akurat.", "keyPoint": "Presisi = antarhasil rapat; akurasi = dekat nilai benar.", "source": "bank"}, {"id": 24, "code": "KA-08", "subject": "Kimia Analisis II (FAF221307)", "topic": "Spektrofotometri UV-Vis", "difficulty": "Sulit", "stem": "Dalam pengukuran spektrofotometri, larutan blanko digunakan untuk…", "options": ["Menentukan panjang gelombang maksimum analit", "Mengoreksi serapan dari pelarut dan komponen matriks selain analit", "Menaikkan konsentrasi analit agar terbaca alat", "Mengkalibrasi timbangan analitik sebelum penimbangan"], "answerIndex": 1, "explanation": "Blanko berisi semua komponen sampel (pelarut, pereaksi) kecuali analit. Mengukur blanko dan menjadikannya acuan nol absorbansi memastikan sinyal yang terbaca pada sampel hanya berasal dari analit, bukan dari serapan pelarut, kuvet, atau pereaksi pembentuk warna.", "keyPoint": "Blanko = koreksi serapan selain analit.", "source": "bank"}, {"id": 25, "code": "BK-01", "subject": "Biokimia", "topic": "Enzim", "difficulty": "Mudah", "stem": "Enzim mempercepat reaksi biokimia dengan cara…", "options": ["Menaikkan energi aktivasi reaksi", "Menurunkan energi aktivasi reaksi", "Mengubah kesetimbangan reaksi ke arah produk", "Menaikkan suhu sel secara lokal"], "answerIndex": 1, "explanation": "Enzim adalah biokatalis: ia menyediakan jalur reaksi alternatif dengan energi aktivasi lebih rendah sehingga reaksi mencapai kesetimbangan lebih cepat. Enzim tidak mengubah ΔG maupun posisi kesetimbangan, dan tidak ikut habis dalam reaksi.", "keyPoint": "Enzim menurunkan energi aktivasi, bukan mengubah kesetimbangan.", "source": "bank"}, {"id": 26, "code": "BK-02", "subject": "Biokimia", "topic": "Enzim", "difficulty": "Sulit", "stem": "Pada inhibisi kompetitif, pengaruh inhibitor terhadap parameter kinetika enzim adalah…", "options": ["Km meningkat, Vmaks tetap", "Km tetap, Vmaks menurun", "Km dan Vmaks sama-sama menurun", "Km menurun, Vmaks meningkat"], "answerIndex": 0, "explanation": "Inhibitor kompetitif bersaing dengan substrat memperebutkan sisi aktif enzim. Akibatnya afinitas semu enzim terhadap substrat menurun (Km naik), tetapi pada konsentrasi substrat sangat tinggi inhibitor dapat disaingi habis sehingga Vmaks tetap tercapai. Pada inhibisi nonkompetitif, inhibitor berikatan di sisi lain sehingga Vmaks turun dan Km umumnya tetap.", "keyPoint": "Kompetitif: Km ↑, Vmaks tetap.", "source": "bank"}, {"id": 27, "code": "BK-03", "subject": "Biokimia", "topic": "Metabolisme Karbohidrat", "difficulty": "Sedang", "stem": "Hasil bersih (netto) ATP dari glikolisis satu molekul glukosa di sitoplasma adalah…", "options": ["2 ATP", "4 ATP", "8 ATP", "38 ATP"], "answerIndex": 0, "explanation": "Glikolisis menghasilkan 4 ATP melalui fosforilasi tingkat substrat, tetapi 2 ATP dipakai pada tahap awal (heksokinase dan fosfofruktokinase), sehingga hasil bersihnya 2 ATP ditambah 2 NADH. Angka ±30–32 ATP adalah hasil total respirasi aerob lengkap sampai rantai transport elektron, bukan glikolisis saja.", "keyPoint": "Glikolisis netto: 2 ATP + 2 NADH per glukosa.", "source": "bank"}, {"id": 28, "code": "BK-04", "subject": "Biokimia", "topic": "Vitamin & Darah", "difficulty": "Sedang", "stem": "Defisiensi vitamin B12 dan/atau asam folat menyebabkan anemia megaloblastik karena keduanya berperan penting dalam…", "options": ["Sintesis hemoglobin pada sitoplasma eritrosit", "Sintesis DNA yang diperlukan untuk pembelahan sel darah merah", "Penyerapan zat besi di usus", "Pengaktifan faktor pembekuan darah"], "answerIndex": 1, "explanation": "Folat dan vitamin B12 diperlukan untuk sintesis nukleotida (terutama timidilat) sehingga sel yang cepat membelah, termasuk prekursor eritrosit di sumsum tulang, dapat memperbanyak DNA. Kekurangannya membuat pembelahan inti tertinggal dibanding pematangan sitoplasma, menghasilkan sel darah merah besar yang belum matang (megaloblas).", "keyPoint": "B12/folat kurang → sintesis DNA terganggu → anemia megaloblastik.", "source": "bank"}, {"id": 29, "code": "BK-05", "subject": "Biokimia", "topic": "Protein", "difficulty": "Mudah", "stem": "Struktur primer protein ditentukan oleh…", "options": ["Pola lipatan alfa-heliks dan beta-sheet", "Urutan asam amino yang dihubungkan ikatan peptida", "Susunan ruang beberapa rantai polipeptida", "Ikatan hidrogen antarrantai samping"], "answerIndex": 1, "explanation": "Struktur primer adalah urutan linear asam amino dalam rantai polipeptida yang disambung ikatan peptida; urutan ini ditentukan oleh gen dan menentukan semua tingkat struktur di atasnya. Alfa-heliks dan beta-sheet adalah struktur sekunder, susunan ruang satu rantai adalah struktur tersier, dan gabungan beberapa subunit adalah struktur kuartener.", "keyPoint": "Primer = urutan asam amino (ikatan peptida).", "source": "bank"}, {"id": 30, "code": "BK-06", "subject": "Biokimia", "topic": "Protein", "difficulty": "Sedang", "stem": "Denaturasi protein oleh panas atau pH ekstrem pada dasarnya merusak…", "options": ["Ikatan peptida pada struktur primer", "Struktur sekunder, tersier, dan kuartener tanpa memutus ikatan peptida", "Urutan asam amino penyusun protein", "Kode genetik yang menyandi protein"], "answerIndex": 1, "explanation": "Denaturasi mengganggu interaksi lemah (ikatan hidrogen, interaksi hidrofobik, jembatan garam) yang mempertahankan lipatan protein, sehingga struktur sekunder–kuartener terbuka dan protein kehilangan aktivitas biologisnya. Urutan asam amino (struktur primer) tetap utuh karena ikatan peptida adalah ikatan kovalen yang kuat; contoh sehari-hari adalah putih telur yang memutih saat dimasak.", "keyPoint": "Denaturasi merusak lipatan, bukan urutan asam amino.", "source": "bank"}, {"id": 31, "code": "MB-01", "subject": "Mikrobiologi Farmasi", "topic": "Bakteriologi", "difficulty": "Mudah", "stem": "Pada pewarnaan Gram, bakteri Gram positif tampak ungu karena…", "options": ["Dinding selnya tipis sehingga mudah menyerap safranin", "Lapisan peptidoglikan yang tebal menahan kompleks kristal violet–iodin saat dicuci alkohol", "Membran luarnya mengikat kristal violet secara permanen", "Sitoplasmanya bersifat sangat asam"], "answerIndex": 1, "explanation": "Bakteri Gram positif memiliki peptidoglikan tebal yang mengalami dehidrasi oleh alkohol sehingga pori-porinya menutup dan kompleks kristal violet–iodin tertahan di dalam sel; sel tetap ungu. Bakteri Gram negatif berpeptidoglikan tipis dan bermembran luar lipid yang larut oleh alkohol, sehingga warna ungu lepas dan sel mengambil warna lawan safranin menjadi merah muda.", "keyPoint": "Gram positif: peptidoglikan tebal menahan kristal violet.", "source": "bank"}, {"id": 32, "code": "MB-02", "subject": "Mikrobiologi Farmasi", "topic": "Sterilisasi", "difficulty": "Mudah", "stem": "Sterilisasi dengan autoklaf (panas lembab bertekanan) umumnya dilakukan pada kondisi…", "options": ["100 °C selama 30 menit", "121 °C selama 15 menit pada tekanan ±15 psi", "160 °C selama 2 jam", "60 °C selama 30 menit"], "answerIndex": 1, "explanation": "Autoklaf memakai uap jenuh bertekanan: kondisi baku 121 °C, tekanan sekitar 15 psi (1 atm di atas tekanan atmosfer), selama 15–20 menit — cukup untuk membunuh bakteri vegetatif dan sporanya. Suhu 160–170 °C selama 1–2 jam adalah sterilisasi panas kering (oven), sedangkan 60 °C hanya pasteurisasi yang tidak steril.", "keyPoint": "Autoklaf: 121 °C, 15 menit, uap bertekanan.", "source": "bank"}, {"id": 33, "code": "MB-03", "subject": "Mikrobiologi Farmasi", "topic": "Bakteriologi", "difficulty": "Sedang", "stem": "Endotoksin bakteri adalah…", "options": ["Protein yang disekresikan bakteri Gram positif dan labil terhadap panas", "Lipopolisakarida (LPS) pada membran luar bakteri Gram negatif yang relatif tahan panas", "Enzim yang merusak dinding sel inang", "Toksin yang hanya dihasilkan oleh virus"], "answerIndex": 1, "explanation": "Endotoksin adalah lipopolisakarida (LPS), bagian struktural membran luar bakteri Gram negatif yang terlepas saat sel lisis; bagian lipid A-nya menimbulkan demam (pirogen) dan relatif tahan panas sehingga tidak hilang hanya dengan sterilisasi biasa — perlu depirogenasi (misalnya panas kering 250 °C). Sebaliknya eksotoksin adalah protein yang disekresikan (banyak oleh Gram positif) dan umumnya labil terhadap panas.", "keyPoint": "Endotoksin = LPS Gram negatif, pirogen, tahan panas.", "source": "bank"}, {"id": 34, "code": "MB-04", "subject": "Mikrobiologi Farmasi", "topic": "Uji Sterilitas", "difficulty": "Sulit", "stem": "Pada uji sterilitas menurut Farmakope, Fluid Thioglycollate Medium (FTM) terutama digunakan untuk menumbuhkan…", "options": ["Jamur dan kapang aerob", "Bakteri anaerob dan bakteri aerob", "Virus dan mikoplasma", "Hanya bakteri pembentuk spora"], "answerIndex": 1, "explanation": "Uji sterilitas memakai dua media: Fluid Thioglycollate Medium yang mendukung pertumbuhan bakteri anaerob (di bagian bawah tabung yang miskin oksigen) sekaligus bakteri aerob (di permukaan), dan Soybean-Casein Digest Medium terutama untuk jamur serta bakteri aerob. Keduanya diinkubasi 14 hari dan diamati kekeruhannya.", "keyPoint": "FTM → bakteri anaerob + aerob; SCDM → jamur + bakteri aerob.", "source": "bank"}, {"id": 35, "code": "MB-05", "subject": "Mikrobiologi Farmasi", "topic": "Bakteriologi", "difficulty": "Mudah", "stem": "Bakteri berbentuk kokus (bulat) yang tersusun bergerombol seperti buah anggur adalah ciri genus…", "options": ["Streptococcus", "Staphylococcus", "Neisseria", "Bacillus"], "answerIndex": 1, "explanation": "Staphylococcus membelah pada beberapa bidang sehingga sel-selnya tersusun bergerombol tidak teratur menyerupai tandan anggur. Streptococcus membelah pada satu bidang membentuk rantai, Neisseria berbentuk diplokokus, dan Bacillus adalah batang (basil) pembentuk spora.", "keyPoint": "Kokus bergerombol = Staphylococcus.", "source": "bank"}, {"id": 36, "code": "MB-06", "subject": "Mikrobiologi Farmasi", "topic": "Antibiotik", "difficulty": "Sedang", "stem": "Antibiotik golongan penisilin bersifat bakterisidal karena mekanisme kerjanya…", "options": ["Menghambat sintesis protein pada ribosom 30S", "Menghambat sintesis dinding sel bakteri (mengikat PBP)", "Merusak membran sel jamur", "Menghambat sintesis asam folat"], "answerIndex": 1, "explanation": "Penisilin dan betalaktam lain mengikat penicillin-binding proteins (PBP) dan menghambat tahap transpeptidasi pembentukan peptidoglikan. Dinding sel yang cacat membuat bakteri lisis oleh tekanan osmotik, sehingga efeknya bakterisidal terutama pada bakteri yang sedang tumbuh. Penghambatan ribosom 30S adalah mekanisme aminoglikosida/tetrasiklin, dan penghambatan folat adalah sulfonamida.", "keyPoint": "Penisilin: hambat dinding sel → bakterisidal.", "source": "bank"}, {"id": 37, "code": "FG-01", "subject": "Farmakognosi", "topic": "Metabolit Sekunder", "difficulty": "Mudah", "stem": "Ciri khas senyawa golongan alkaloid adalah…", "options": ["Mengandung nitrogen dan umumnya bersifat basa", "Selalu berbentuk glikosida gula", "Merupakan polimer fenol yang larut lemak", "Tidak memberikan efek farmakologi apa pun"], "answerIndex": 0, "explanation": "Alkaloid adalah metabolit sekunder yang mengandung satu atau lebih atom nitrogen (umumnya dalam cincin heterosiklik) dan bersifat basa, sehingga membentuk garam dengan asam. Banyak yang beraktivitas farmakologi kuat, contohnya morfin, atropin, kafein, dan kinin.", "keyPoint": "Alkaloid: mengandung N, bersifat basa.", "source": "bank"}, {"id": 38, "code": "FG-02", "subject": "Farmakognosi", "topic": "Identifikasi Senyawa", "difficulty": "Sedang", "stem": "Pereaksi Dragendorff digunakan untuk identifikasi alkaloid dan memberikan hasil positif berupa…", "options": ["Warna biru tua dengan FeCl3", "Endapan berwarna jingga/oranye", "Busa yang stabil saat dikocok", "Warna merah dengan asam sulfat pekat"], "answerIndex": 1, "explanation": "Dragendorff (kalium iodobismutat) membentuk endapan jingga sampai coklat kemerahan dengan alkaloid, dan juga dipakai sebagai pereaksi semprot pada KLT. Warna biru-hitam dengan FeCl3 menunjukkan tanin/fenol, sedangkan busa stabil adalah uji saponin.", "keyPoint": "Dragendorff + alkaloid → endapan jingga.", "source": "bank"}, {"id": 39, "code": "FG-03", "subject": "Farmakognosi", "topic": "Metabolit Sekunder", "difficulty": "Sedang", "stem": "Tanin dapat dikenali dari sifat dan reaksinya, yaitu…", "options": ["Bersifat astringen dan memberi warna biru-hitam atau hijau dengan FeCl3", "Mudah menguap dan berbau khas aromatik", "Berasa manis dan membentuk busa stabil", "Larut sempurna dalam minyak dan tidak larut air"], "answerIndex": 0, "explanation": "Tanin adalah senyawa polifenol yang bersifat astringen (mengerutkan jaringan) karena mampu mengendapkan protein — dasar pemanfaatannya sebagai antidiare dan obat kumur. Dengan larutan FeCl3, tanin terhidrolisis memberi warna biru-hitam dan tanin terkondensasi memberi warna hijau kecoklatan. Sifat mudah menguap adalah ciri minyak atsiri, dan busa stabil adalah ciri saponin.", "keyPoint": "Tanin: astringen, + FeCl3 → biru-hitam/hijau.", "source": "bank"}, {"id": 40, "code": "FG-04", "subject": "Farmakognosi", "topic": "Simplisia", "difficulty": "Mudah", "stem": "Pengertian simplisia menurut Farmakope Herbal Indonesia adalah…", "options": ["Bahan alam yang telah diekstraksi dengan pelarut organik", "Bahan alam yang belum mengalami pengolahan apa pun kecuali pengeringan, digunakan untuk pengobatan", "Sediaan jadi berupa jamu yang telah terdaftar", "Senyawa murni hasil isolasi dari tanaman"], "answerIndex": 1, "explanation": "Simplisia adalah bahan alam (nabati, hewani, atau mineral) yang belum mengalami pengolahan apa pun selain pengeringan, dan digunakan untuk tujuan pengobatan. Simplisia nabati dapat berupa tanaman utuh, bagian tanaman, atau eksudat. Bila sudah diekstraksi, hasilnya disebut ekstrak, bukan simplisia lagi.", "keyPoint": "Simplisia = bahan alam, hanya dikeringkan.", "source": "bank"}, {"id": 41, "code": "FG-05", "subject": "Farmakognosi", "topic": "Metabolit Sekunder", "difficulty": "Sedang", "stem": "Digoksin, glikosida jantung yang dipakai untuk gagal jantung, diperoleh dari tanaman…", "options": ["Papaver somniferum", "Digitalis lanata / Digitalis purpurea", "Cinchona succirubra", "Atropa belladonna"], "answerIndex": 1, "explanation": "Digoksin adalah glikosida kardiak dari daun Digitalis lanata (dan Digitalis purpurea) yang bekerja menghambat pompa Na⁺/K⁺-ATPase sehingga meningkatkan kontraktilitas jantung. Papaver somniferum adalah sumber morfin, Cinchona sumber kinin, dan Atropa belladonna sumber atropin.", "keyPoint": "Digoksin ← Digitalis (glikosida jantung).", "source": "bank"}, {"id": 42, "code": "FG-06", "subject": "Farmakognosi", "topic": "Metabolit Sekunder", "difficulty": "Mudah", "stem": "Minyak atsiri (minyak eteris) umumnya diperoleh dari simplisia dengan cara…", "options": ["Maserasi dengan etanol 70%", "Destilasi (penyulingan) uap atau air", "Perkolasi dengan eter", "Pengeringan beku (freeze drying)"], "answerIndex": 1, "explanation": "Minyak atsiri adalah campuran senyawa mudah menguap pembawa aroma khas tanaman. Karena sifatnya yang ikut terbawa uap air, metode baku perolehannya adalah destilasi air, destilasi uap, atau destilasi air–uap. Maserasi/perkolasi menghasilkan ekstrak yang masih mengandung banyak komponen tidak menguap.", "keyPoint": "Minyak atsiri didapat lewat destilasi uap/air.", "source": "bank"}, {"id": 43, "code": "FF-01", "subject": "Farmasi Fisika", "topic": "Kelarutan", "difficulty": "Mudah", "stem": "Prinsip \"like dissolves like\" dalam kelarutan berarti…", "options": ["Semua zat larut dalam air bila diaduk cukup lama", "Zat polar cenderung larut dalam pelarut polar, zat nonpolar dalam pelarut nonpolar", "Kelarutan selalu naik dengan kenaikan suhu", "Zat dengan titik leleh tinggi selalu lebih mudah larut"], "answerIndex": 1, "explanation": "Kelarutan terbesar terjadi bila gaya antarmolekul zat terlarut dan pelarut mirip: senyawa polar/ionik larut baik dalam pelarut polar seperti air, sedangkan senyawa nonpolar larut dalam pelarut nonpolar seperti minyak atau heksana. Kenaikan suhu tidak selalu menaikkan kelarutan (beberapa zat justru turun), dan titik leleh tinggi umumnya malah menurunkan kelarutan.", "keyPoint": "Polar larut di polar; nonpolar di nonpolar.", "source": "bank"}, {"id": 44, "code": "FF-02", "subject": "Farmasi Fisika", "topic": "Reologi", "difficulty": "Sedang", "stem": "Sistem aliran pseudoplastis (shear thinning) menunjukkan perilaku…", "options": ["Viskositas tetap berapa pun laju gesernya", "Viskositas menurun bila laju geser (pengadukan) meningkat", "Viskositas meningkat bila laju geser meningkat", "Tidak mengalir sampai tegangan tertentu terlampaui, lalu viskositas naik"], "answerIndex": 1, "explanation": "Pada sistem pseudoplastis — khas larutan polimer dan banyak suspensi/emulsi farmasi — molekul yang semula acak akan mensejajarkan diri searah aliran saat digeser, sehingga tahanan alir turun: viskositas tampak menurun dengan naiknya laju geser. Viskositas tetap adalah aliran Newtonian, viskositas naik saat digeser adalah aliran dilatan, dan adanya yield value adalah ciri aliran plastis.", "keyPoint": "Pseudoplastis: digeser makin kencang → makin encer.", "source": "bank"}, {"id": 45, "code": "FF-03", "subject": "Farmasi Fisika", "topic": "Disolusi", "difficulty": "Sedang", "stem": "Menurut persamaan Noyes–Whitney, memperkecil ukuran partikel zat aktif akan mempercepat laju disolusi karena…", "options": ["Kelarutan jenuh zat menjadi berlipat ganda", "Luas permukaan partikel yang kontak dengan medium meningkat", "Koefisien difusi zat berubah menjadi nol", "Tebal lapisan difusi menjadi semakin besar"], "answerIndex": 1, "explanation": "Persamaan Noyes–Whitney: dC/dt = (D·A/h)(Cs − C). Laju disolusi sebanding dengan luas permukaan A. Memperkecil ukuran partikel (misalnya mikronisasi) sangat menaikkan luas permukaan per satuan massa, sehingga disolusi lebih cepat — strategi klasik untuk obat sukar larut. Tebal lapisan difusi h yang lebih besar justru memperlambat disolusi.", "keyPoint": "Partikel lebih kecil → luas permukaan ↑ → disolusi ↑.", "source": "bank"}, {"id": 46, "code": "FF-04", "subject": "Farmasi Fisika", "topic": "Surfaktan", "difficulty": "Sedang", "stem": "Nilai HLB (hydrophile–lipophile balance) surfaktan yang tinggi (±8–18) menunjukkan surfaktan tersebut cocok sebagai…", "options": ["Pembentuk emulsi tipe A/M (air dalam minyak)", "Pembentuk emulsi tipe M/A (minyak dalam air) dan bahan pembasah/pelarut", "Antifoam (pencegah busa)", "Pengawet sediaan steril"], "answerIndex": 1, "explanation": "Skala HLB 0–20 menunjukkan keseimbangan sifat hidrofil–lipofil surfaktan. HLB rendah (3–6) bersifat lipofil dan cocok untuk emulsi A/M, sedangkan HLB tinggi (8–18) bersifat hidrofil sehingga menstabilkan emulsi M/A serta berfungsi sebagai pembasah dan pelarut (solubilizer pada HLB 15–18). Contoh surfaktan HLB tinggi adalah Tween (polisorbat).", "keyPoint": "HLB tinggi → emulsi M/A; HLB rendah → A/M.", "source": "bank"}, {"id": 47, "code": "FF-05", "subject": "Farmasi Fisika", "topic": "Emulsi", "difficulty": "Sedang", "stem": "Uji identifikasi tipe emulsi dengan metode pengenceran didasarkan pada prinsip bahwa emulsi…", "options": ["Hanya dapat diencerkan dengan fase luarnya (fase kontinu)", "Selalu berubah warna bila ditambah air", "Mengendap bila ditambah fase dalamnya", "Tidak dapat diencerkan dengan cairan apa pun"], "answerIndex": 0, "explanation": "Fase kontinu (fase luar) menentukan cairan pengencer yang dapat bercampur dengan emulsi. Emulsi M/A (fase luar air) dapat diencerkan dengan air tetapi tidak dengan minyak; sebaliknya emulsi A/M hanya dapat diencerkan dengan minyak. Prinsip yang sama mendasari uji konduktivitas (M/A menghantar listrik) dan uji pewarnaan dengan zat warna larut air/larut minyak.", "keyPoint": "Emulsi bisa diencerkan hanya dengan fase luarnya.", "source": "bank"}, {"id": 48, "code": "FF-06", "subject": "Farmasi Fisika", "topic": "Surfaktan", "difficulty": "Sulit", "stem": "Konsentrasi misel kritis (CMC) adalah konsentrasi surfaktan di mana…", "options": ["Surfaktan mulai mengendap dari larutan", "Surfaktan mulai membentuk misel dan tegangan permukaan menjadi hampir tetap", "Larutan surfaktan mencapai titik didihnya", "Semua molekul air telah terikat surfaktan"], "answerIndex": 1, "explanation": "Di bawah CMC, molekul surfaktan berada sebagai monomer dan menempati antarmuka sehingga tegangan permukaan turun tajam seiring konsentrasi. Pada CMC antarmuka jenuh dan molekul tambahan mulai beragregasi membentuk misel di dalam larutan; akibatnya tegangan permukaan hampir tidak turun lagi, dan sifat solubilisasi (melarutkan zat sukar larut di inti misel) mulai muncul.", "keyPoint": "CMC = titik mulai terbentuk misel.", "source": "bank"}, {"id": 49, "code": "FK-09", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Konversi Dosis Hewan Uji", "difficulty": "Sedang", "stem": "Dalam praktikum farmakologi eksperimental, dosis untuk hewan uji dikonversi dari dosis manusia berdasarkan luas permukaan tubuh. Menurut tabel konversi yang lazim dipakai, faktor konversi dosis manusia (70 kg) untuk tikus putih 200 g adalah…", "options": ["0,0026", "0,018", "0,14", "1,00"], "answerIndex": 1, "explanation": "Konversi dosis antarspesies tidak cukup memakai perbandingan bobot badan, karena laju metabolisme berkaitan dengan luas permukaan tubuh. Pada tabel konversi yang lazim dipakai di praktikum (Laurence & Bacharach), dosis total manusia 70 kg dikalikan 0,018 untuk tikus 200 g dan 0,0026 untuk mencit 20 g. Nilai 0,14 adalah faktor untuk kelinci 1,5 kg.", "keyPoint": "Konversi manusia 70 kg → tikus 200 g: × 0,018.", "source": "bank"}, {"id": 50, "code": "FK-10", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Metode Uji Eksperimental", "difficulty": "Sedang", "stem": "Pada uji aktivitas analgesik metode geliat (writhing test), mencit diinduksi asam asetat secara intraperitoneal. Parameter yang diamati untuk menilai efek analgesik adalah…", "options": ["Waktu mencit bertahan di atas pelat panas (hot plate)", "Jumlah geliat (regangan perut dan kaki) dalam waktu pengamatan tertentu", "Volume edema pada telapak kaki mencit", "Lamanya waktu tidur yang diinduksi pentobarbital"], "answerIndex": 1, "explanation": "Asam asetat menimbulkan nyeri viseral yang membuat mencit menggeliat: perut menempel ke lantai, badan meregang, dan kaki belakang menjangkau ke belakang. Zat analgesik menurunkan jumlah geliat dibanding kontrol, dan persentase proteksinya dihitung dari penurunan itu. Waktu di pelat panas adalah parameter metode hot plate (analgesik sentral), volume edema untuk uji antiinflamasi, dan waktu tidur untuk uji sedatif-hipnotik.", "keyPoint": "Writhing test: hitung jumlah geliat setelah asam asetat i.p.", "source": "bank"}, {"id": 51, "code": "FK-11", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Metode Uji Eksperimental", "difficulty": "Sedang", "stem": "Uji aktivitas antiinflamasi in vivo yang klasik dilakukan dengan menginduksi edema pada telapak kaki tikus menggunakan karagenan. Volume edema diukur dengan alat…", "options": ["Pletismometer", "Rotarod", "Spirometer", "Osmometer"], "answerIndex": 0, "explanation": "Karagenan yang disuntikkan ke telapak kaki tikus menimbulkan edema akut yang berkembang dalam beberapa jam. Perubahan volume kaki diukur dengan pletismometer (berdasarkan perpindahan volume cairan) sebelum dan sesudah induksi, lalu persentase hambatan edema oleh obat uji dibandingkan dengan kontrol. Rotarod menilai koordinasi motorik, spirometer fungsi paru, dan osmometer tekanan osmotik.", "keyPoint": "Edema karagenan → volume kaki diukur pletismometer.", "source": "bank"}, {"id": 52, "code": "FK-12", "subject": "Farmakologi dan Toksikologi Eksperimental I (FAF221302)", "topic": "Toksikologi", "difficulty": "Sulit", "stem": "LD50 (dosis letal median) dalam uji toksisitas akut didefinisikan sebagai…", "options": ["Dosis terkecil yang mulai menimbulkan efek terapi pada hewan uji", "Dosis tunggal suatu zat yang secara statistik mematikan 50% hewan uji dalam masa pengamatan", "Dosis harian maksimum yang masih aman dipakai seumur hidup", "Dosis yang menimbulkan efek toksik pada 50% hewan uji tanpa menyebabkan kematian"], "answerIndex": 1, "explanation": "LD50 adalah dosis tunggal yang diperkirakan mematikan separuh populasi hewan uji, ditentukan dari kurva hubungan dosis–kematian selama masa pengamatan (umumnya sampai 14 hari) dan menjadi dasar klasifikasi toksisitas akut suatu zat. Dosis yang menimbulkan efek toksik pada 50% hewan adalah TD50, sedangkan dosis efektif median adalah ED50 — ketiganya dipakai menghitung indeks terapi.", "keyPoint": "LD50 = dosis tunggal yang mematikan 50% hewan uji.", "source": "bank"}, {"id": 53, "code": "FSP-09", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Evaluasi Granul", "difficulty": "Sedang", "stem": "Sifat alir granul dinilai dari sudut diam (angle of repose). Granul dengan sudut diam sekitar 30° menunjukkan…", "options": ["Sifat alir sangat buruk, granul tidak dapat dicetak", "Sifat alir baik", "Granul terlalu basah dan lengket", "Ukuran granul terlalu halus untuk dicetak"], "answerIndex": 1, "explanation": "Sudut diam adalah sudut antara permukaan kerucut tumpukan granul dan bidang datar; semakin mudah granul mengalir, semakin landai tumpukannya. Sebagai patokan, sudut 25–45° menunjukkan sifat alir baik sampai cukup, sedangkan sudut di atas ±50° menandakan aliran buruk yang berisiko menyebabkan variasi bobot tablet. Sifat alir juga dapat dinilai dari kecepatan alir dan indeks kompresibilitas (Carr).", "keyPoint": "Sudut diam 25–45° = aliran granul baik.", "source": "bank"}, {"id": 54, "code": "FSP-10", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Evaluasi Tablet", "difficulty": "Sulit", "stem": "Uji keseragaman bobot untuk tablet dengan bobot rata-rata lebih dari 300 mg menurut Farmakope (penyimpangan kolom A = 5%, kolom B = 10%) dinyatakan memenuhi syarat apabila…", "options": ["Semua tablet harus tepat sama bobotnya dengan bobot rata-rata", "Tidak lebih dari 2 tablet menyimpang melebihi kolom A dan tidak satu pun menyimpang melebihi kolom B", "Tidak lebih dari 5 tablet menyimpang melebihi kolom B", "Cukup 10 tablet ditimbang dan semuanya masuk kolom B"], "answerIndex": 1, "explanation": "Uji keseragaman bobot dilakukan pada 20 tablet. Persentase penyimpangan terhadap bobot rata-rata diatur dalam dua kolom: untuk bobot rata-rata > 300 mg, kolom A = 5% dan kolom B = 10%. Syaratnya: tidak lebih dari 2 tablet yang penyimpangannya melebihi kolom A, dan tidak boleh ada satu tablet pun yang menyimpang melebihi kolom B. Untuk bobot rata-rata 151–300 mg, kolom A = 7,5% dan kolom B = 15%.", "keyPoint": "Keseragaman bobot: maks 2 tablet lewat kolom A, nol lewat kolom B.", "source": "bank"}, {"id": 55, "code": "FSP-11", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Uji Disolusi", "difficulty": "Sedang", "stem": "Pada uji disolusi menurut Farmakope, alat tipe 2 adalah alat dengan pengaduk berbentuk…", "options": ["Keranjang (basket)", "Dayung (paddle)", "Silinder bolak-balik", "Cakram berputar"], "answerIndex": 1, "explanation": "Farmakope mengenal beberapa tipe alat disolusi: tipe 1 keranjang berputar (basket), tipe 2 dayung (paddle) — keduanya paling sering dipakai untuk tablet dan kapsul — tipe 3 silinder bolak-balik, dan tipe 4 sel alir (flow-through cell). Pada tipe 2, tablet dibiarkan tenggelam di dasar bejana dan medium diaduk oleh dayung pada kecepatan tertentu, umumnya 50–100 rpm.", "keyPoint": "Disolusi tipe 1 = keranjang; tipe 2 = dayung.", "source": "bank"}, {"id": 56, "code": "FSP-12", "subject": "Formulasi Teknologi Sediaan Padat (FAF221305)", "topic": "Evaluasi Tablet", "difficulty": "Mudah", "stem": "Uji kekerasan tablet (hardness test) bertujuan menilai…", "options": ["Kecepatan tablet melepaskan zat aktif dalam medium", "Ketahanan tablet terhadap tekanan dan goncangan mekanik selama penanganan", "Keseragaman kadar zat aktif antartablet", "Kemampuan tablet menyerap air dari udara"], "answerIndex": 1, "explanation": "Kekerasan tablet diukur dengan hardness tester: gaya (umumnya dinyatakan dalam kg) yang dibutuhkan untuk memecahkan tablet secara diametral. Tablet yang terlalu lunak mudah remuk saat pengemasan dan distribusi, sedangkan tablet terlalu keras dapat gagal hancur dan disolusi. Kekerasan tablet konvensional umumnya berkisar 4–8 kg. Kecepatan pelepasan zat aktif dinilai dengan uji disolusi, bukan uji kekerasan.", "keyPoint": "Kekerasan = ketahanan mekanik tablet (umumnya 4–8 kg).", "source": "bank"}, {"id": 57, "code": "KA-09", "subject": "Kimia Analisis II (FAF221307)", "topic": "Standarisasi Larutan", "difficulty": "Sedang", "stem": "Larutan NaOH harus dibakukan (distandarisasi) sebelum dipakai sebagai titran karena NaOH bukan bahan baku standar primer. Bahan yang lazim dipakai untuk membakukan NaOH adalah…", "options": ["Natrium karbonat anhidrat", "Kalium hidrogen ftalat (KHP)", "Asam klorida pekat", "Natrium tiosulfat"], "answerIndex": 1, "explanation": "NaOH bersifat higroskopis dan menyerap CO₂ dari udara sehingga kadarnya tidak pasti — ia larutan standar sekunder yang harus dibakukan. Kalium hidrogen ftalat (KHP) memenuhi syarat bahan baku standar primer: kemurnian tinggi, stabil, tidak higroskopis, dan berat molekulnya besar (204,22) sehingga kesalahan timbang relatif kecil. Natrium karbonat anhidrat adalah standar primer untuk membakukan asam (HCl), bukan basa.", "keyPoint": "Bakukan NaOH dengan KHP (standar primer).", "source": "bank"}, {"id": 58, "code": "KA-10", "subject": "Kimia Analisis II (FAF221307)", "topic": "Argentometri", "difficulty": "Sedang", "stem": "Penetapan kadar klorida dengan metode Mohr menggunakan titran AgNO₃ dan indikator kalium kromat (K₂CrO₄). Titik akhir titrasi ditandai oleh…", "options": ["Hilangnya warna ungu larutan", "Terbentuknya endapan merah bata perak kromat (Ag₂CrO₄)", "Timbulnya warna biru karena kompleks amilum–iod", "Perubahan warna fenolftalein menjadi merah muda"], "answerIndex": 1, "explanation": "Selama titrasi, Ag⁺ terlebih dahulu mengendapkan Cl⁻ sebagai AgCl putih karena kelarutannya lebih kecil. Setelah seluruh klorida habis, kelebihan Ag⁺ pertama bereaksi dengan indikator kromat membentuk Ag₂CrO₄ yang berwarna merah bata — tanda titik akhir. Metode Mohr harus berlangsung pada pH sekitar 6,5–9: terlalu asam kromat berubah menjadi dikromat, terlalu basa Ag⁺ mengendap sebagai Ag₂O.", "keyPoint": "Mohr: titik akhir = endapan Ag₂CrO₄ merah bata.", "source": "bank"}, {"id": 59, "code": "KA-11", "subject": "Kimia Analisis II (FAF221307)", "topic": "Iodometri", "difficulty": "Sedang", "stem": "Pada titrasi iodometri, indikator amilum sebaiknya ditambahkan…", "options": ["Sejak awal titrasi bersamaan dengan analit", "Menjelang titik akhir, saat warna larutan sudah kuning pucat", "Setelah titik akhir tercapai untuk memastikan hasil", "Tidak perlu ditambahkan karena iod sudah berwarna"], "answerIndex": 1, "explanation": "Amilum membentuk kompleks biru tua dengan iod. Bila ditambahkan sejak awal saat konsentrasi iod masih tinggi, kompleks amilum–iod yang terbentuk sangat kuat dan sukar terurai sehingga titik akhir menjadi lambat dan tidak tajam. Karena itu amilum ditambahkan ketika sebagian besar iod sudah tertitrasi (warna kuning pucat); titik akhir tercapai saat warna biru tepat hilang.", "keyPoint": "Amilum ditambahkan menjelang titik akhir iodometri.", "source": "bank"}, {"id": 60, "code": "KA-12", "subject": "Kimia Analisis II (FAF221307)", "topic": "Titrasi Redoks", "difficulty": "Sulit", "stem": "Titrasi permanganometri dilakukan dalam suasana asam menggunakan H₂SO₄ encer, bukan HCl. Alasannya adalah…", "options": ["HCl membuat larutan terlalu berwarna untuk diamati", "Ion klorida dapat dioksidasi oleh KMnO₄ menjadi gas klor sehingga konsumsi titran berlebih", "H₂SO₄ berfungsi sebagai indikator titik akhir", "KMnO₄ tidak larut dalam larutan yang mengandung HCl"], "answerIndex": 1, "explanation": "KMnO₄ adalah oksidator kuat; dalam suasana asam klorida, ion Cl⁻ ikut teroksidasi menjadi Cl₂ sehingga volume KMnO₄ yang terpakai lebih besar dari yang seharusnya dan hasil penetapan menjadi terlalu tinggi. H₂SO₄ encer dipilih karena sulfat tidak dioksidasi permanganat. KMnO₄ sekaligus bertindak sebagai autoindikator: titik akhir ditandai warna merah muda samar yang bertahan ±30 detik.", "keyPoint": "Permanganometri pakai H₂SO₄ — Cl⁻ bisa dioksidasi KMnO₄.", "source": "bank"}];
+
+      const LETTERS = ["A", "B", "C", "D", "E"];
+      const COUNTS = [5, 10, 15, 20];
+      const SUBJECT_ICONS = {
+        "Farmakologi dan Toksikologi Eksperimental I (FAF221302)": "💊",
+        "Formulasi Teknologi Sediaan Padat (FAF221305)": "🧪",
+        "Kimia Analisis II (FAF221307)": "⚗️",
+        "Biokimia": "🧬",
+        "Mikrobiologi Farmasi": "🦠",
+        "Farmakognosi": "🌿",
+        "Farmasi Fisika": "🔬",
+      };
+      function subjectIcon(name) { return SUBJECT_ICONS[name] || "📘"; }
+
+      function esc(s) {
+        return String(s == null ? "" : s)
+          .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+      }
+      function shuffle(arr) {
+        const a = arr.slice();
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const t = a[i]; a[i] = a[j]; a[j] = t;
+        }
+        return a;
+      }
+
+      /* ---------- Penyimpanan lokal (versi statis: tersimpan di browser ini) ---------- */
+      const LS_KEY = "bank-soal-farmasi-s3-statis-v1";
+      function loadStore() {
+        try {
+          const raw = localStorage.getItem(LS_KEY);
+          if (raw) {
+            const p = JSON.parse(raw);
+            if (p && typeof p === "object") {
+              return {
+                extra: Array.isArray(p.extra) ? p.extra : [],
+                attempts: p.attempts && typeof p.attempts === "object" ? p.attempts : {},
+                bookmarks: Array.isArray(p.bookmarks) ? p.bookmarks : [],
+                history: Array.isArray(p.history) ? p.history : [],
+                nextId: typeof p.nextId === "number" ? p.nextId : 1000,
+              };
+            }
+          }
+        } catch (e) { /* penyimpanan tidak tersedia: jalan tanpa simpan */ }
+        return { extra: [], attempts: {}, bookmarks: [], history: [], nextId: 1000 };
+      }
+      const store = loadStore();
+      function saveStore() {
+        try { localStorage.setItem(LS_KEY, JSON.stringify(store)); } catch (e) { /* abaikan */ }
+      }
+
+      function allQuestions() {
+        return SEED.concat(store.extra);
+      }
+      function questionById(id) {
+        const all = allQuestions();
+        for (let i = 0; i < all.length; i++) if (all[i].id === id) return all[i];
+        return null;
+      }
+      function subjectsOf() {
+        const map = new Map();
+        for (const q of allQuestions()) {
+          if (!map.has(q.subject)) map.set(q.subject, { name: q.subject, topics: new Set(), total: 0 });
+          const e = map.get(q.subject);
+          e.topics.add(q.topic); e.total += 1;
+        }
+        return Array.from(map.values()).map((e) => ({
+          name: e.name, topics: Array.from(e.topics).sort(), total: e.total,
+        }));
+      }
+      function computeStats() {
+        let totalAnswered = 0, totalCorrect = 0;
+        const perSubjectMap = new Map();
+        const wrongIds = [];
+        for (const key of Object.keys(store.attempts)) {
+          const a = store.attempts[key];
+          const q = questionById(Number(key));
+          if (!q || !a || !a.n) continue;
+          totalAnswered += a.n; totalCorrect += a.c;
+          const e = perSubjectMap.get(q.subject) || { answered: 0, correct: 0 };
+          e.answered += a.n; e.correct += a.c;
+          perSubjectMap.set(q.subject, e);
+          if (!a.lastCorrect) wrongIds.push(q.id);
+        }
+        const finished = store.history;
+        const last = finished[0];
+        return {
+          totalAnswered, totalCorrect,
+          accuracy: totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0,
+          perSubject: perSubjectMap,
+          wrongIds,
+          sessionsDone: finished.length,
+          lastScore: last && last.total > 0 ? Math.round((last.correct / last.total) * 100) : null,
+        };
+      }
+      function recordAttempt(qid, correct) {
+        const a = store.attempts[qid] || { n: 0, c: 0, lastCorrect: false };
+        a.n += 1; if (correct) a.c += 1; a.lastCorrect = !!correct;
+        store.attempts[qid] = a;
+        saveStore();
+      }
+      function isBookmarked(id) { return store.bookmarks.indexOf(id) >= 0; }
+      function toggleBookmark(id) {
+        const i = store.bookmarks.indexOf(id);
+        if (i >= 0) store.bookmarks.splice(i, 1); else store.bookmarks.push(id);
+        saveStore();
+      }
+      function feedbackFor(q, chosen) {
+        return {
+          correct: chosen === q.answerIndex,
+          answerIndex: q.answerIndex,
+          explanation: q.explanation,
+          keyPoint: q.keyPoint,
+        };
+      }
+
+      /* ---------- State tampilan ---------- */
+      let view = "beranda"; // beranda | bank | sesi | tambah
+      let session = null;
+      let setupError = "", sessionError = "", bankMsg = "";
+      const sel = { subject: "Campuran", count: 10, mode: "langsung" };
+      const filt = { subject: "Semua", topic: "Semua", difficulty: "Semua", status: "Semua", search: "" };
+      let expandedId = null;
+      const ai = { subject: Object.keys(SUBJECT_ICONS)[0], topic: "", count: 3, msg: "" };
+      const form = {
+        subject: "", topic: "", difficulty: "Sedang", stem: "",
+        options: ["", "", "", ""], answer: 0, explanation: "", keyPoint: "",
+        error: "", ok: "",
+      };
+
+      const app = document.getElementById("app");
+      const tabbar = document.getElementById("tabbar");
+
+      function chip(text, tone) {
+        return '<span class="chip' + (tone ? " " + tone : "") + '">' + esc(text) + "</span>";
+      }
+      function diffTone(d) { return d === "Sulit" ? "danger" : d === "Sedang" ? "amber" : "ok"; }
+      function footerHTML() {
+        return (
+          '<footer class="credit" aria-label="Kredit pembuat">' +
+          '<p class="pre">Dibuat untuk belajar</p>' +
+          '<p class="by">by <strong>Benjamin</strong></p>' +
+          '<p class="sub">Bank Soal Farmasi · Universitas Gadjah Mada · Semester 3</p>' +
+          "</footer>"
+        );
+      }
+      function explainHTML(q) {
+        return (
+          '<div class="explain"><p class="h">Pembahasan</p><p>' + esc(q.explanation) + "</p>" +
+          '<p class="keypoint">Inti: ' + esc(q.keyPoint) + "</p></div>"
+        );
+      }
+
+      function render() {
+        tabbar.classList.toggle("hidden", view === "sesi");
+        const btns = tabbar.querySelectorAll("[data-nav]");
+        btns.forEach((b) => {
+          if (b.getAttribute("data-nav") === view) b.setAttribute("aria-current", "page");
+          else b.removeAttribute("aria-current");
+        });
+        if (view === "beranda") renderBeranda();
+        else if (view === "bank") renderBank();
+        else if (view === "sesi") renderSesi();
+        else if (view === "tambah") renderTambah();
+        window.scrollTo(0, 0);
+      }
+
+      /* ================= BERANDA ================= */
+      function renderBeranda() {
+        const stats = computeStats();
+        const subjects = subjectsOf();
+        const total = allQuestions().length;
+        let h = "";
+        h += '<p class="small" style="font-weight:500;color:var(--dim)">Farmasi UGM · Semester 3 · Kurikulum 2022</p>';
+        h += "<h1>Mau latihan apa<br />hari ini?</h1>";
+        h += '<p class="mt2 dim">' + total + " soal pilihan ganda dengan pembahasan konsep di setiap soal, " +
+          "berporos pada tiga praktikum semester III — Farmakologi dan Toksikologi Eksperimental I " +
+          "(FAF221302), Formulasi Teknologi Sediaan Padat (FAF221305), dan Kimia Analisis II " +
+          "(FAF221307) — plus mata kuliah pendukung semester 3.</p>";
+
+        h += '<section aria-label="Ringkasan progres belajar" class="statgrid">';
+        h += '<div class="card stat"><p class="n">' + stats.totalAnswered + '</p><p class="l">soal dijawab</p></div>';
+        h += '<div class="card stat"><p class="n">' + stats.accuracy + '%</p><p class="l">akurasi</p></div>';
+        h += '<div class="card stat"><p class="n">' + stats.sessionsDone + '</p><p class="l">sesi selesai</p></div>';
+        h += "</section>";
+
+        if (stats.wrongIds.length > 0) {
+          h += '<button type="button" class="wrongbtn" id="btn-wrong"><span>🔁 Ulangi ' +
+            stats.wrongIds.length + ' soal yang terakhir kamu jawab salah</span><span aria-hidden="true">→</span></button>';
+        }
+
+        h += '<section aria-label="Atur sesi latihan" class="mt6"><h2>Mulai sesi latihan</h2>';
+        h += '<p class="mt3 small" style="font-weight:600;color:var(--dim)">Mata kuliah</p><div class="pillrow subjects">';
+        const names = ["Campuran"].concat(subjects.map((s) => s.name));
+        for (const name of names) {
+          h += '<button type="button" class="pill" data-subject="' + esc(name) + '" aria-pressed="' +
+            (sel.subject === name) + '">' +
+            (name === "Campuran" ? "🎲 Campuran" : esc(subjectIcon(name) + " " + name)) + "</button>";
+        }
+        h += "</div>";
+        h += '<label class="subject-select"><span class="sr-only">Mata kuliah</span>' +
+          '<select id="sel-subject-mobile" class="field">' +
+          names.map((n) => '<option value="' + esc(n) + '"' + (sel.subject === n ? " selected" : "") + ">" +
+            (n === "Campuran" ? "🎲 Campuran (semua mata kuliah)" : esc(subjectIcon(n) + " " + n)) + "</option>").join("") +
+          "</select></label>";
+        h += '<p class="mt4 small" style="font-weight:600;color:var(--dim)">Jumlah soal</p><div class="pillrow">';
+        for (const n of COUNTS) {
+          h += '<button type="button" class="countbtn" data-count="' + n + '" aria-pressed="' +
+            (sel.count === n) + '">' + n + "</button>";
+        }
+        h += "</div>";
+        h += '<p class="mt4 small" style="font-weight:600;color:var(--dim)">Mode</p><div class="modegrid">';
+        h += '<button type="button" class="modebtn" data-mode="langsung" aria-pressed="' + (sel.mode === "langsung") +
+          '"><span class="t">⚡ Langsung</span><span class="d">Pembahasan muncul tiap selesai menjawab</span></button>';
+        h += '<button type="button" class="modebtn" data-mode="ujian" aria-pressed="' + (sel.mode === "ujian") +
+          '"><span class="t">📝 Ujian</span><span class="d">Kerjakan semua dulu, nilai &amp; pembahasan di akhir</span></button>';
+        h += "</div>";
+        if (setupError) h += '<p role="alert" class="msg-err">' + esc(setupError) + "</p>";
+        h += '<button type="button" class="btn btn-accent btn-big mt4" id="btn-start">▶ Mulai Latihan</button>';
+        h += "</section>";
+
+        h += '<section aria-label="Progres per mata kuliah" class="mt8"><h2>Progres per mata kuliah</h2><div class="stack mt3">';
+        for (const s of subjects) {
+          const p = stats.perSubject.get(s.name);
+          const answered = p ? p.answered : 0;
+          const acc = answered > 0 ? Math.round((p.correct / answered) * 100) : 0;
+          const pct = Math.min(100, Math.round((answered / Math.max(s.total, 1)) * 100));
+          h += '<div class="card subjcard"><div class="subjhead"><p class="nm"><span aria-hidden="true">' +
+            esc(subjectIcon(s.name)) + "</span> " + esc(s.name) + '</p><p class="xs dim">' + s.total +
+            " soal · " + answered + " dijawab" + (answered > 0 ? " · akurasi " + acc + "%" : "") + "</p></div>" +
+            '<div class="bar" role="progressbar" aria-valuenow="' + pct + '" aria-valuemin="0" aria-valuemax="100" aria-label="Cakupan latihan ' +
+            esc(s.name) + '"><div style="width:' + pct + '%"></div></div></div>';
+        }
+        h += "</div></section>";
+
+        if (store.history.length > 0) {
+          h += '<section aria-label="Riwayat sesi terakhir" class="mt8"><h2>Riwayat sesi</h2><div class="stack mt3">';
+          for (const hs of store.history.slice(0, 8)) {
+            const d = new Date(hs.finishedAt);
+            const tgl = isNaN(d.getTime()) ? "" : d.toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" });
+            h += '<div class="card histrow"><div><p style="font-weight:600">' + esc(hs.subject) + '</p>' +
+              '<p class="xs dim">' + (hs.mode === "ujian" ? "Mode ujian" : "Mode langsung") + " · " + tgl + "</p></div>" +
+              '<p class="sc">' + hs.correct + "/" + hs.total +
+              ' <span class="xs dim" style="font-weight:500">(' + (hs.total > 0 ? Math.round((hs.correct / hs.total) * 100) : 0) + "%)</span></p></div>";
+          }
+          h += "</div></section>";
+        }
+
+        h += '<section class="tools" aria-label="Berkas versi statis"><h2>Pakai di mana saja</h2>' +
+          '<p class="small dim mt1">Halaman ini satu berkas HTML utuh — unduh lalu unggah ke Vercel atau GitHub Pages untuk membukanya dari perangkat mana pun. Progres belajar tersimpan di browser perangkat yang kamu pakai.</p>' +
+          '<div class="row">' +
+          '<button type="button" class="btn" id="btn-download">⬇ Unduh berkas HTML ini</button>' +
+          '<button type="button" class="btn" id="btn-export">⬇ Ekspor bank soal (JSON)</button>' +
+          "</div></section>";
+
+        h += footerHTML();
+        app.innerHTML = h;
+
+        app.querySelectorAll("[data-subject]").forEach((b) =>
+          b.addEventListener("click", () => { sel.subject = b.getAttribute("data-subject"); renderBeranda(); }));
+        const selMobile = document.getElementById("sel-subject-mobile");
+        if (selMobile) selMobile.addEventListener("change", (e) => { sel.subject = e.target.value; renderBeranda(); });
+        app.querySelectorAll("[data-count]").forEach((b) =>
+          b.addEventListener("click", () => { sel.count = Number(b.getAttribute("data-count")); renderBeranda(); }));
+        app.querySelectorAll("[data-mode]").forEach((b) =>
+          b.addEventListener("click", () => { sel.mode = b.getAttribute("data-mode"); renderBeranda(); }));
+        const bw = document.getElementById("btn-wrong");
+        if (bw) bw.addEventListener("click", startWrongSession);
+        document.getElementById("btn-start").addEventListener("click", startSetupSession);
+        document.getElementById("btn-download").addEventListener("click", downloadSelf);
+        document.getElementById("btn-export").addEventListener("click", exportJSON);
+      }
+
+      function startSession(mode, label, ids) {
+        session = {
+          ids: ids, index: 0, mode: mode, label: label,
+          answers: {}, feedback: {}, done: false, finalCorrect: 0,
+        };
+        sessionError = "";
+        view = "sesi";
+        render();
+      }
+      function startSetupSession() {
+        setupError = "";
+        const pool = sel.subject === "Campuran"
+          ? allQuestions()
+          : allQuestions().filter((q) => q.subject === sel.subject);
+        if (pool.length === 0) {
+          setupError = "Belum ada soal untuk pilihan ini.";
+          renderBeranda();
+          return;
+        }
+        const ids = shuffle(pool.map((q) => q.id)).slice(0, Math.min(sel.count, pool.length));
+        startSession(sel.mode, sel.subject, ids);
+      }
+      function startWrongSession() {
+        const stats = computeStats();
+        const ids = stats.wrongIds.filter((id) => questionById(id));
+        if (ids.length === 0) return;
+        startSession("langsung", "Ulangi yang Salah", shuffle(ids));
+      }
+      function startSingle(q) { startSession("langsung", q.subject, [q.id]); }
+
+      function downloadSelf() {
+        const html = "<!doctype html>\n" + document.documentElement.outerHTML;
+        const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = "bank-soal-farmasi-semester-3.html";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+      }
+      function exportJSON() {
+        const data = allQuestions().map((q) => ({
+          kode: q.code, mataKuliah: q.subject, topik: q.topic, kesulitan: q.difficulty,
+          soal: q.stem, pilihan: q.options, kunciIndex: q.answerIndex,
+          pembahasan: q.explanation, inti: q.keyPoint, sumber: q.source,
+        }));
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = "bank-soal-farmasi-semester-3.json";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+      }
+
+      /* ================= BANK SOAL ================= */
+      function filteredQuestions() {
+        const stats = computeStats();
+        const wrongSet = new Set(stats.wrongIds);
+        const needle = filt.search.trim().toLowerCase();
+        return allQuestions().filter((q) => {
+          if (filt.subject !== "Semua" && q.subject !== filt.subject) return false;
+          if (filt.topic !== "Semua" && q.topic !== filt.topic) return false;
+          if (filt.difficulty !== "Semua" && q.difficulty !== filt.difficulty) return false;
+          const att = store.attempts[q.id];
+          if (filt.status === "Belum dijawab" && att && att.n > 0) return false;
+          if (filt.status === "Pernah salah" && !wrongSet.has(q.id)) return false;
+          if (filt.status === "Ditandai" && !isBookmarked(q.id)) return false;
+          if (needle && (q.stem + " " + q.topic + " " + q.subject + " " + q.code).toLowerCase().indexOf(needle) < 0) return false;
+          return true;
+        });
+      }
+      function bankListHTML() {
+        const list = filteredQuestions();
+        if (list.length === 0) {
+          return '<div class="empty"><p style="font-size:1.875rem" aria-hidden="true">🗂️</p>' +
+            '<p class="mt2" style="font-weight:600">Tidak ada soal yang cocok dengan filter ini</p>' +
+            '<p class="mt1 small dim">Coba longgarkan filter atau kata kuncinya — atau buat soal baru di tab Tambah Soal.</p></div>';
+        }
+        let h = '<div class="stack mt4">';
+        for (const q of list) {
+          const open = expandedId === q.id;
+          const att = store.attempts[q.id];
+          h += '<article class="card qcard"><button type="button" class="qhead" data-expand="' + q.id +
+            '" aria-expanded="' + open + '"><span class="chips">' +
+            chip(q.code) + chip(q.subject) + chip(q.topic) + chip(q.difficulty, diffTone(q.difficulty)) +
+            (q.source === "ai" ? chip("AI", "amber") : "") +
+            (q.source === "tambah sendiri" ? chip("Buatanmu", "amber") : "") +
+            (isBookmarked(q.id) ? '<span aria-label="Ditandai">🔖</span>' : "") +
+            (att && att.n > 0 ? '<span class="xs dim" style="margin-left:auto">' + att.c + "/" + att.n + " benar</span>" : "") +
+            '</span><span class="qstem">' + esc(q.stem) + "</span></button>";
+          if (open) {
+            h += '<div class="qbody"><ol class="optlist">';
+            q.options.forEach((opt, i) => {
+              h += '<li class="' + (i === q.answerIndex ? "key" : "") + '"><strong>' + LETTERS[i] + ".</strong> " +
+                esc(opt) + (i === q.answerIndex ? " ✓ kunci" : "") + "</li>";
+            });
+            h += "</ol>" + explainHTML(q);
+            h += '<div class="qactions">' +
+              '<button type="button" class="btn btn-accent" data-practice="' + q.id + '">▶ Latihan soal ini</button>' +
+              '<button type="button" class="btn" data-bookmark="' + q.id + '" aria-pressed="' + isBookmarked(q.id) + '">' +
+              (isBookmarked(q.id) ? "🔖 Hapus tanda" : "🔖 Tandai") + "</button>" +
+              (q.source !== "bank"
+                ? '<button type="button" class="btn btn-danger-o" data-delete="' + q.id + '">🗑 Hapus</button>'
+                : "") +
+              "</div></div>";
+          }
+          h += "</article>";
+        }
+        h += "</div>";
+        return h;
+      }
+      function bindBankList() {
+        const list = document.getElementById("bank-list");
+        if (!list) return;
+        list.querySelectorAll("[data-expand]").forEach((b) =>
+          b.addEventListener("click", () => {
+            const id = Number(b.getAttribute("data-expand"));
+            expandedId = expandedId === id ? null : id;
+            refreshBankList();
+          }));
+        list.querySelectorAll("[data-practice]").forEach((b) =>
+          b.addEventListener("click", () => {
+            const q = questionById(Number(b.getAttribute("data-practice")));
+            if (q) startSingle(q);
+          }));
+        list.querySelectorAll("[data-bookmark]").forEach((b) =>
+          b.addEventListener("click", () => {
+            toggleBookmark(Number(b.getAttribute("data-bookmark")));
+            refreshBankList();
+          }));
+        list.querySelectorAll("[data-delete]").forEach((b) =>
+          b.addEventListener("click", () => {
+            const id = Number(b.getAttribute("data-delete"));
+            store.extra = store.extra.filter((q) => q.id !== id);
+            delete store.attempts[id];
+            store.bookmarks = store.bookmarks.filter((x) => x !== id);
+            if (expandedId === id) expandedId = null;
+            bankMsg = "Soal berhasil dihapus.";
+            saveStore();
+            renderBank();
+          }));
+      }
+      function refreshBankList() {
+        const list = document.getElementById("bank-list");
+        const count = document.getElementById("bank-count");
+        if (!list) return;
+        list.innerHTML = bankListHTML();
+        if (count) {
+          count.textContent = filteredQuestions().length + " dari " + allQuestions().length +
+            " soal. Ketuk soal untuk melihat kunci & pembahasannya.";
+        }
+        bindBankList();
+      }
+      function renderBank() {
+        const subjects = subjectsOf();
+        const topics = filt.subject === "Semua"
+          ? Array.from(new Set(allQuestions().map((q) => q.topic))).sort()
+          : (subjects.find((s) => s.name === filt.subject) || { topics: [] }).topics;
+        const selCls = "field";
+        let h = '<h1 class="page">Bank Soal</h1>';
+        h += '<p class="mt1 dim" id="bank-count"></p>';
+        h += '<label class="mt4" style="display:block"><span class="sr-only">Cari soal</span>' +
+          '<input type="search" id="f-search" class="field" placeholder="🔍 Cari kata kunci, topik, atau kode soal…" value="' +
+          esc(filt.search) + '" /></label>';
+        h += '<div class="filtergrid">';
+        h += '<label><span class="sr-only">Filter mata kuliah</span><select id="f-subject" class="' + selCls + '">' +
+          '<option value="Semua">Semua mapel</option>' +
+          subjects.map((s) => '<option value="' + esc(s.name) + '"' + (filt.subject === s.name ? " selected" : "") + ">" + esc(s.name) + "</option>").join("") +
+          "</select></label>";
+        h += '<label><span class="sr-only">Filter topik</span><select id="f-topic" class="' + selCls + '">' +
+          '<option value="Semua">Semua topik</option>' +
+          topics.map((t) => '<option value="' + esc(t) + '"' + (filt.topic === t ? " selected" : "") + ">" + esc(t) + "</option>").join("") +
+          "</select></label>";
+        h += '<label><span class="sr-only">Filter tingkat kesulitan</span><select id="f-difficulty" class="' + selCls + '">' +
+          ["Semua", "Mudah", "Sedang", "Sulit"].map((d) =>
+            '<option value="' + (d === "Semua" ? "Semua" : d) + '"' + (filt.difficulty === d ? " selected" : "") + ">" +
+            (d === "Semua" ? "Semua level" : d) + "</option>").join("") +
+          "</select></label>";
+        h += '<label><span class="sr-only">Filter status pengerjaan</span><select id="f-status" class="' + selCls + '">' +
+          ["Semua", "Belum dijawab", "Pernah salah", "Ditandai"].map((s) =>
+            '<option value="' + s + '"' + (filt.status === s ? " selected" : "") + ">" +
+            (s === "Semua" ? "Semua status" : s === "Pernah salah" ? "Terakhir salah" : s) + "</option>").join("") +
+          "</select></label>";
+        h += "</div>";
+        if (bankMsg) h += '<p role="status" class="msg-info">' + esc(bankMsg) + "</p>";
+        h += '<div id="bank-list">' + bankListHTML() + "</div>";
+        h += footerHTML();
+        app.innerHTML = h;
+
+        const count = document.getElementById("bank-count");
+        count.textContent = filteredQuestions().length + " dari " + allQuestions().length +
+          " soal. Ketuk soal untuk melihat kunci & pembahasannya.";
+        document.getElementById("f-search").addEventListener("input", (e) => {
+          filt.search = e.target.value; refreshBankList();
+        });
+        document.getElementById("f-subject").addEventListener("change", (e) => {
+          filt.subject = e.target.value; filt.topic = "Semua"; renderBank();
+        });
+        document.getElementById("f-topic").addEventListener("change", (e) => {
+          filt.topic = e.target.value; refreshBankList();
+        });
+        document.getElementById("f-difficulty").addEventListener("change", (e) => {
+          filt.difficulty = e.target.value; refreshBankList();
+        });
+        document.getElementById("f-status").addEventListener("change", (e) => {
+          filt.status = e.target.value; refreshBankList();
+        });
+        bindBankList();
+      }
+
+      /* ================= SESI LATIHAN ================= */
+      function chooseAnswer(q, idx) {
+        if (!session || session.done) return;
+        if (session.mode === "ujian") {
+          session.answers[q.id] = idx;
+          renderSesi();
+          return;
+        }
+        if (session.feedback[q.id]) return;
+        sessionError = "";
+        session.answers[q.id] = idx;
+        const fb = feedbackFor(q, idx);
+        session.feedback[q.id] = fb;
+        recordAttempt(q.id, fb.correct);
+        renderSesi();
+      }
+      function finishSession() {
+        if (!session) return;
+        let correct = 0;
+        if (session.mode === "ujian") {
+          for (const qid of session.ids) {
+            const chosen = session.answers[qid];
+            const q = questionById(qid);
+            if (chosen === undefined || !q) continue;
+            const fb = feedbackFor(q, chosen);
+            session.feedback[qid] = fb;
+            recordAttempt(qid, fb.correct);
+            if (fb.correct) correct += 1;
+          }
+        } else {
+          correct = session.ids.filter((id) => session.feedback[id] && session.feedback[id].correct).length;
+        }
+        session.done = true;
+        session.finalCorrect = correct;
+        store.history.unshift({
+          mode: session.mode, subject: session.label,
+          total: session.ids.length, correct: correct,
+          finishedAt: new Date().toISOString(),
+        });
+        store.history = store.history.slice(0, 30);
+        saveStore();
+        renderSesi();
+      }
+      function renderSesi() {
+        const s = session;
+        if (!s) { view = "beranda"; renderBeranda(); return; }
+        const total = s.ids.length;
+
+        if (s.done) {
+          const pct = total > 0 ? Math.round((s.finalCorrect / total) * 100) : 0;
+          let h = '<p class="small dim" style="font-weight:500">' + esc(s.label) + "</p>";
+          h += '<h1 class="page">Hasil sesi</h1>';
+          h += '<div class="card result"><p class="pct">' + pct + "%</p>" +
+            '<p class="mt1" style="font-weight:600">' + s.finalCorrect + " dari " + total + " soal benar</p>" +
+            '<p class="mt1 small dim">' +
+            (pct >= 80 ? "Mantap — konsepnya sudah kuat. Naikkan level kesulitannya."
+              : pct >= 50 ? "Lumayan. Baca lagi pembahasan soal yang salah di bawah ini."
+              : "Tidak apa-apa — justru di sinilah belajarnya. Pelajari pembahasan tiap soal di bawah.") +
+            '</p><div class="qactions" style="justify-content:center">' +
+            '<button type="button" class="btn btn-accent" id="btn-restart" style="padding:0.625rem 1rem;font-weight:700">🔁 Ulangi sesi</button>' +
+            '<button type="button" class="btn" id="btn-exit" style="padding:0.625rem 1rem">Kembali ke Beranda</button>' +
+            "</div></div>";
+          h += '<h2 class="mt6">Bedah tiap soal</h2><div class="stack mt3">';
+          s.ids.forEach((qid, i) => {
+            const q = questionById(qid);
+            if (!q) return;
+            const fb = s.feedback[qid];
+            const chosen = s.answers[qid];
+            h += '<article class="card bedah"><p class="chips">' +
+              chip("Soal " + (i + 1)) + chip(q.subject) +
+              (fb ? chip(fb.correct ? "✓ Benar" : "✗ Salah", fb.correct ? "ok" : "danger")
+                  : chip("Tidak dijawab", "amber")) +
+              '</p><p class="stem">' + esc(q.stem) + "</p>" +
+              '<p class="mt2 small">Jawabanmu: <strong>' +
+              (chosen !== undefined ? LETTERS[chosen] + ". " + esc(q.options[chosen] || "") : "—") + "</strong></p>" +
+              '<p class="small">Kunci: <strong>' + LETTERS[q.answerIndex] + ". " + esc(q.options[q.answerIndex] || "") + "</strong></p>" +
+              explainHTML(q) + "</article>";
+          });
+          h += "</div>" + footerHTML();
+          app.innerHTML = h;
+          document.getElementById("btn-restart").addEventListener("click", () => {
+            startSession(s.mode, s.label, shuffle(s.ids));
+          });
+          document.getElementById("btn-exit").addEventListener("click", exitSession);
+          window.scrollTo(0, 0);
+          return;
+        }
+
+        const q = questionById(s.ids[s.index]);
+        if (!q) {
+          app.innerHTML = '<div style="padding:4rem 0;text-align:center"><p style="font-weight:600">Soal sesi ini tidak ditemukan.</p>' +
+            '<button type="button" class="btn btn-accent mt4" id="btn-exit2" style="font-weight:700">Kembali ke Beranda</button></div>';
+          document.getElementById("btn-exit2").addEventListener("click", exitSession);
+          return;
+        }
+        const fb = s.feedback[q.id];
+        const chosen = s.answers[q.id];
+        const isLast = s.index === total - 1;
+        const answeredCount = s.mode === "ujian"
+          ? Object.keys(s.answers).length
+          : Object.keys(s.feedback).length;
+        const canNext = s.mode === "ujian" ? true : fb !== undefined;
+        const progressPct = Math.round(((s.index + 1) / total) * 100);
+
+        let h = '<div class="sesshead"><div><p style="font-weight:600">' + esc(s.label) + "</p>" +
+          '<p class="xs dim">' + (s.mode === "ujian" ? "📝 Mode ujian" : "⚡ Mode langsung") +
+          " · Soal " + (s.index + 1) + " dari " + total + "</p></div>" +
+          '<button type="button" class="btn" id="btn-exit" aria-label="Keluar dari sesi" style="padding:0.5rem 0.75rem">✕ Keluar</button></div>';
+        h += '<div class="bar" role="progressbar" aria-valuenow="' + progressPct + '" aria-valuemin="0" aria-valuemax="100" aria-label="Kemajuan sesi"><div style="width:' + progressPct + '%"></div></div>';
+
+        h += '<article class="card qbig"><div class="chips">' +
+          '<span style="font-size:1.25rem" aria-hidden="true">' + esc(subjectIcon(q.subject)) + "</span>" +
+          chip(q.subject) + chip(q.topic) + chip(q.difficulty, diffTone(q.difficulty)) +
+          (q.source === "ai" ? chip("Soal AI", "amber") : "") +
+          (q.source === "tambah sendiri" ? chip("Buatanmu", "amber") : "") +
+          '<button type="button" id="btn-bm" aria-pressed="' + isBookmarked(q.id) + '" aria-label="' +
+          (isBookmarked(q.id) ? "Hapus tanda soal ini" : "Tandai soal ini") +
+          '" style="margin-left:auto;border:1px solid var(--border);background:var(--surface);border-radius:0.5rem;padding:0.375rem 0.625rem;font-size:0.875rem">' +
+          (isBookmarked(q.id) ? "🔖" : "🏷️") + "</button></div>";
+        h += "<h2>" + esc(q.stem) + '</h2><div role="group" aria-label="Pilihan jawaban">';
+        q.options.forEach((opt, i) => {
+          const isKey = fb !== undefined && i === q.answerIndex;
+          const isChosen = chosen === i;
+          const isWrong = fb !== undefined && isChosen && !fb.correct;
+          let cls = "optbtn";
+          if (isKey) cls += " key"; else if (isWrong) cls += " wrong"; else if (isChosen) cls += " sel";
+          h += '<button type="button" class="' + cls + '" data-opt="' + i + '"' +
+            (fb !== undefined ? " disabled" : "") + ' aria-pressed="' + isChosen + '">' +
+            '<span class="letter">' + LETTERS[i] + '</span><span class="txt">' + esc(opt) + "</span>" +
+            (isKey ? '<span class="mark" style="color:var(--ok)" aria-label="Jawaban benar">✓</span>' : "") +
+            (isWrong ? '<span class="mark" style="color:var(--danger)" aria-label="Jawabanmu salah">✗</span>' : "") +
+            "</button>";
+        });
+        h += "</div>";
+        if (fb) {
+          h += '<div class="feedback ' + (fb.correct ? "ok" : "bad") + '" role="status">' +
+            '<p class="verdict ' + (fb.correct ? "ok" : "bad") + '">' + (fb.correct ? "✓ Benar!" : "✗ Kurang tepat") + "</p>" +
+            (!fb.correct
+              ? '<p class="mt1 small" style="font-weight:600">Jawaban yang benar: ' + LETTERS[fb.answerIndex] + ". " + esc(q.options[fb.answerIndex] || "") + "</p>"
+              : "") +
+            '<p class="mt2" style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--accent)">Pembahasan</p>' +
+            '<p class="mt1 small" style="line-height:1.6">' + esc(fb.explanation) + "</p>" +
+            '<p class="keypoint">Inti: ' + esc(fb.keyPoint) + "</p></div>";
+        }
+        h += "</article>";
+        if (sessionError) h += '<p role="alert" class="msg-err">' + esc(sessionError) + "</p>";
+        h += '<div class="sessnav"><button type="button" class="btn" id="btn-prev"' +
+          (s.index === 0 ? " disabled" : "") + ">← Sebelumnya</button>";
+        if (isLast) {
+          h += '<button type="button" class="btn btn-accent grow" id="btn-finish"' +
+            (s.mode === "langsung" && fb === undefined ? " disabled" : "") + ">" +
+            (s.mode === "ujian"
+              ? "Kumpulkan Jawaban (" + answeredCount + "/" + total + " terjawab)"
+              : "Selesai &amp; Lihat Hasil") + "</button>";
+        } else {
+          h += '<button type="button" class="btn btn-accent grow" id="btn-next"' +
+            (!canNext ? " disabled" : "") + ">Berikutnya →</button>";
+        }
+        h += "</div>";
+        if (s.mode === "langsung" && !fb) {
+          h += '<p class="mt2 xs dim" style="text-align:center">Pilih satu jawaban — pembahasan langsung muncul di sini.</p>';
+        }
+        app.innerHTML = h;
+
+        document.getElementById("btn-exit").addEventListener("click", exitSession);
+        document.getElementById("btn-bm").addEventListener("click", () => {
+          toggleBookmark(q.id); renderSesi();
+        });
+        app.querySelectorAll("[data-opt]").forEach((b) =>
+          b.addEventListener("click", () => chooseAnswer(q, Number(b.getAttribute("data-opt")))));
+        document.getElementById("btn-prev").addEventListener("click", () => {
+          session.index = Math.max(0, session.index - 1); renderSesi();
+        });
+        const bn = document.getElementById("btn-next");
+        if (bn) bn.addEventListener("click", () => {
+          session.index = Math.min(total - 1, session.index + 1); renderSesi();
+        });
+        const bf = document.getElementById("btn-finish");
+        if (bf) bf.addEventListener("click", finishSession);
+        window.scrollTo(0, 0);
+      }
+      function exitSession() {
+        session = null;
+        view = "beranda";
+        render();
+      }
+
+      /* ================= GENERATOR SOAL (pola hitungan) =================
+         Versi statis tidak punya server AI, jadi generator ini menyusun
+         soal hitungan baru dari pola baku farmasi dengan angka yang
+         diacak — kunci dan pembahasan langkah demi langkah dihitung
+         langsung di halaman ini, jadi selalu konsisten. */
+      function ri(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+      function pickOne(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+      function fmtNum(x) {
+        let v = Math.round(x * 1000) / 1000;
+        let s = String(v);
+        if (s.indexOf("e") >= 0 || s.indexOf("E") >= 0) {
+          s = v.toExponential(2).replace("e", " × 10^");
+        }
+        return s.replace(".", ",");
+      }
+      function numOptions(correct, distractors, unit) {
+        const vals = [correct];
+        for (const d of distractors) {
+          const v = Math.round(d * 1000) / 1000;
+          if (v > 0 && vals.every((x) => Math.abs(x - v) > 1e-9)) vals.push(v);
+          if (vals.length >= 4) break;
+        }
+        let k = 2;
+        while (vals.length < 4) {
+          const v = Math.round(correct * (1 + 0.37 * k) * 1000) / 1000;
+          if (v > 0 && vals.every((x) => Math.abs(x - v) > 1e-9)) vals.push(v);
+          k++;
+        }
+        const order = shuffle(vals.map((v, i) => i));
+        const options = order.map((i) => fmtNum(vals[i]) + (unit ? " " + unit : ""));
+        return { options: options, answerIndex: order.indexOf(0) };
+      }
+      const SUP = { "-": "⁻", "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹" };
+      function sup(n) { return String(n).split("").map((c) => SUP[c] || c).join(""); }
+
+      const TEMPLATES = [
+        {
+          subjects: ["Kimia Analisis II (FAF221307)"],
+          make() {
+            const massa = pickOne([2, 4, 5, 8, 10, 20]);
+            const vol = pickOne([250, 500, 1000]);
+            const mol = massa / 40;
+            const M = mol / (vol / 1000);
+            const o = numOptions(M, [mol, M * 2, M / 2, massa / vol * 100], "M");
+            return {
+              topic: "Molaritas", difficulty: "Sedang",
+              stem: "Berapa molaritas larutan NaOH yang dibuat dengan melarutkan " + fmtNum(massa) +
+                " g NaOH (Mr = 40) ke dalam air hingga volume larutan " + vol + " mL?",
+              options: o.options, answerIndex: o.answerIndex,
+              explanation: "Langkah 1: mol NaOH = massa ÷ Mr = " + fmtNum(massa) + " g ÷ 40 = " + fmtNum(mol) +
+                " mol. Langkah 2: ubah volume ke liter: " + vol + " mL = " + fmtNum(vol / 1000) +
+                " L. Langkah 3: M = mol ÷ V = " + fmtNum(mol) + " ÷ " + fmtNum(vol / 1000) + " = " + fmtNum(M) +
+                " M. Pengecoh umumnya muncul dari lupa mengubah mL menjadi liter atau memakai massa sebagai mol.",
+              keyPoint: "Molaritas = mol zat terlarut ÷ volume larutan dalam liter.",
+            };
+          },
+        },
+        {
+          subjects: ["Kimia Analisis II (FAF221307)"],
+          make() {
+            const m1 = pickOne([6, 10, 12]);
+            const m2 = pickOne([0.1, 0.25, 0.5, 1]);
+            const v2 = pickOne([250, 500]);
+            const v1 = (m2 * v2) / m1;
+            const o = numOptions(v1, [m2 * v2, v1 * 2, v1 / 2, (m1 * v2) / m2 / 100], "mL");
+            return {
+              topic: "Pengenceran", difficulty: "Sedang",
+              stem: "Larutan stok HCl " + fmtNum(m1) + " M akan diencerkan menjadi " + v2 + " mL larutan HCl " +
+                fmtNum(m2) + " M. Berapa volume larutan stok yang harus dipipet?",
+              options: o.options, answerIndex: o.answerIndex,
+              explanation: "Gunakan rumus pengenceran M₁V₁ = M₂V₂, karena jumlah mol zat terlarut tidak berubah. " +
+                "V₁ = (M₂ × V₂) ÷ M₁ = (" + fmtNum(m2) + " × " + v2 + ") ÷ " + fmtNum(m1) + " = " + fmtNum(v1) +
+                " mL. Pipet volume stok tersebut, masukkan ke labu ukur " + v2 + " mL, lalu tambahkan air hingga tanda batas.",
+              keyPoint: "Pengenceran: M₁V₁ = M₂V₂ — mol sebelum dan sesudah sama.",
+            };
+          },
+        },
+        {
+          subjects: ["Kimia Analisis II (FAF221307)", "Formulasi Teknologi Sediaan Padat (FAF221305)", "Farmasi Fisika"],
+          make() {
+            const pct = pickOne([0.9, 1, 2, 5, 10]);
+            const vol = pickOne([100, 200, 250, 500]);
+            const g = (pct * vol) / 100;
+            const o = numOptions(g, [pct * vol, g * 2, g / 2, pct], "g");
+            return {
+              topic: "Konsentrasi % b/v", difficulty: "Mudah",
+              stem: "Berapa gram zat yang harus ditimbang untuk membuat " + vol + " mL larutan dengan konsentrasi " +
+                fmtNum(pct) + "% b/v?",
+              options: o.options, answerIndex: o.answerIndex,
+              explanation: "% b/v artinya gram zat terlarut dalam 100 mL larutan. Jadi massa = (" + fmtNum(pct) +
+                " ÷ 100) × " + vol + " mL = " + fmtNum(g) + " g. Zat ditimbang " + fmtNum(g) +
+                " g lalu dilarutkan dan volume dicukupkan sampai " + vol + " mL — bukan ditambah air sebanyak " + vol + " mL.",
+              keyPoint: "% b/v = gram zat per 100 mL larutan akhir.",
+            };
+          },
+        },
+        {
+          subjects: ["Farmakologi dan Toksikologi Eksperimental I (FAF221302)"],
+          make() {
+            const dosis = pickOne([10, 15]);
+            const bb = pickOne([12, 15, 20, 25, 30]);
+            const total = dosis * bb;
+            const tablet = total / 500;
+            const o = numOptions(tablet, [total / 100, tablet * 2, dosis, total], "tablet");
+            return {
+              topic: "Perhitungan Dosis", difficulty: "Sedang",
+              stem: "Parasetamol untuk anak diresepkan " + dosis + " mg/kgBB per pemberian. Seorang anak berbobot " +
+                bb + " kg. Sediaan yang tersedia tablet 500 mg. Berapa tablet yang diberikan per kali pemberian?",
+              options: o.options, answerIndex: o.answerIndex,
+              explanation: "Langkah 1: dosis per pemberian = " + dosis + " mg/kgBB × " + bb + " kg = " + fmtNum(total) +
+                " mg. Langkah 2: jumlah tablet = " + fmtNum(total) + " mg ÷ 500 mg = " + fmtNum(tablet) +
+                " tablet. Dalam praktik, dosis anak selalu dihitung dari berat badan, bukan disamakan dengan dosis dewasa.",
+              keyPoint: "Dosis anak = dosis per kgBB × berat badan, lalu sesuaikan dengan kekuatan sediaan.",
+            };
+          },
+        },
+        {
+          subjects: ["Formulasi Teknologi Sediaan Padat (FAF221305)"],
+          make() {
+            const bobot = pickOne([200, 250, 500, 650]);
+            const pct = pickOne([10, 20, 25, 40, 50]);
+            const aktif = (bobot * pct) / 100;
+            const o = numOptions(aktif, [bobot - aktif, aktif * 2, pct, bobot], "mg");
+            return {
+              topic: "Formula Tablet", difficulty: "Mudah",
+              stem: "Sebuah tablet berbobot " + bobot + " mg mengandung zat aktif " + pct +
+                "% dari bobot tablet. Berapa mg zat aktif dalam satu tablet?",
+              options: o.options, answerIndex: o.answerIndex,
+              explanation: "Kandungan zat aktif = persen × bobot tablet = " + pct + "% × " + bobot + " mg = " +
+                fmtNum(aktif) + " mg. Sisa bobot tablet (" + fmtNum(bobot - aktif) +
+                " mg) adalah bahan tambahan seperti pengisi, pengikat, dan penghancur.",
+              keyPoint: "Kadar zat aktif per tablet = % kadar × bobot satu tablet.",
+            };
+          },
+        },
+        {
+          subjects: ["Mikrobiologi Farmasi"],
+          make() {
+            const koloni = pickOne([30, 45, 60, 80, 120]);
+            const peng = pickOne([4, 5, 6]);
+            const cfu = koloni / (0.1 * Math.pow(10, -peng));
+            const sCfu = fmtNum(cfu / Math.pow(10, peng + 1)) + " × 10" + sup(peng + 1);
+            const opts = shuffle([
+              sCfu + " CFU/mL",
+              fmtNum(koloni / Math.pow(10, peng)) + " × 10" + sup(peng + 1) + " CFU/mL",
+              fmtNum(koloni * 10) + " × 10" + sup(peng) + " CFU/mL",
+              fmtNum(koloni) + " × 10" + sup(peng) + " CFU/mL",
+            ]);
+            return {
+              topic: "Hitung Koloni (CFU)", difficulty: "Sulit",
+              stem: "Pada uji angka lempeng total, cawan dari pengenceran 10" + sup(-peng) +
+                " yang ditanam 0,1 mL menunjukkan " + koloni + " koloni. Berapa jumlah bakteri dalam sampel asal?",
+              options: opts, answerIndex: opts.indexOf(sCfu + " CFU/mL"),
+              explanation: "CFU/mL = jumlah koloni ÷ (volume tanam × faktor pengenceran) = " + koloni +
+                " ÷ (0,1 × 10" + sup(-peng) + ") = " + sCfu + " CFU/mL. Volume tanam 0,1 mL ikut dihitung — " +
+                "mengabaikannya membuat hasil 10 kali lebih kecil dari seharusnya.",
+              keyPoint: "CFU/mL = koloni ÷ (volume tanam dalam mL × pengenceran).",
+            };
+          },
+        },
+        {
+          subjects: ["Biokimia"],
+          make() {
+            const pka = pickOne([4.2, 4.76, 7.2]);
+            const ratio = pickOne([10, 100]);
+            const ph = pka + Math.log10(ratio);
+            const o = numOptions(ph, [pka, pka - Math.log10(ratio), pka + 0.5, ph * 2], "");
+            const opts = o.options.map((x) => "pH " + x);
+            return {
+              topic: "Larutan Penyangga", difficulty: "Sulit",
+              stem: "Suatu larutan penyangga asam lemah (pKa = " + fmtNum(pka) + ") memiliki perbandingan " +
+                "[garam]/[asam] = " + ratio + " : 1. Berapa pH larutan penyangga tersebut?",
+              options: opts, answerIndex: o.answerIndex,
+              explanation: "Persamaan Henderson–Hasselbalch: pH = pKa + log([garam]/[asam]) = " + fmtNum(pka) +
+                " + log " + ratio + " = " + fmtNum(pka) + " + " + fmtNum(Math.log10(ratio)) + " = " + fmtNum(ph) +
+                ". Setiap kenaikan perbandingan 10 kali menaikkan pH sebesar 1 satuan.",
+              keyPoint: "Henderson–Hasselbalch: pH = pKa + log([A⁻]/[HA]).",
+            };
+          },
+        },
+        {
+          subjects: ["Farmakognosi"],
+          make() {
+            const awal = pickOne([2, 5, 10]);
+            const susut = pickOne([5, 7, 8, 10, 12]);
+            const akhir = Math.round(awal * (1 - susut / 100) * 1000) / 1000;
+            const o = numOptions(susut, [(awal - akhir), susut * 2, (akhir / awal) * 100, susut / 2], "%");
+            return {
+              topic: "Susut Pengeringan", difficulty: "Sedang",
+              stem: "Simplisia sebanyak " + fmtNum(awal) + " g dikeringkan pada suhu 105 °C hingga bobot tetap " +
+                fmtNum(akhir) + " g. Berapa persen susut pengeringan simplisia tersebut?",
+              options: o.options, answerIndex: o.answerIndex,
+              explanation: "Susut pengeringan = (bobot awal − bobot akhir) ÷ bobot awal × 100% = (" + fmtNum(awal) +
+                " − " + fmtNum(akhir) + ") ÷ " + fmtNum(awal) + " × 100% = " + fmtNum(susut) +
+                "%. Parameter ini menggambarkan kadar air dan zat mudah menguap dalam simplisia; Farmakope umumnya mensyaratkan tidak lebih dari 10%.",
+              keyPoint: "Susut pengeringan = (bobot hilang ÷ bobot awal) × 100%.",
+            };
+          },
+        },
+        {
+          subjects: ["Farmasi Fisika"],
+          make() {
+            const g = pickOne([5, 10, 25, 50]);
+            const mr = pickOne([58.5, 180]);
+            const nama = mr === 58.5 ? "NaCl" : "glukosa";
+            const mol = Math.round((g / mr) * 1000) / 1000;
+            const o = numOptions(mol, [g * mr, mol * 2, g / 100, mol / 2], "mol");
+            return {
+              topic: "Mol dan Massa Molar", difficulty: "Mudah",
+              stem: "Berapa mol yang terkandung dalam " + g + " g " + nama + " (Mr = " + fmtNum(mr) + ")?",
+              options: o.options, answerIndex: o.answerIndex,
+              explanation: "Mol = massa ÷ Mr = " + g + " g ÷ " + fmtNum(mr) + " = " + fmtNum(mol) +
+                " mol. Rumus ini dasar hampir semua hitungan farmasi fisika dan kimia analisis — konsentrasi, dosis molar, sampai osmolaritas.",
+              keyPoint: "Mol = massa (g) ÷ massa molar (Mr).",
+            };
+          },
+        },
+      ];
+      function generateLocal(subject, topic, count) {
+        let pool = TEMPLATES.filter((t) => t.subjects.indexOf(subject) >= 0);
+        if (pool.length === 0) pool = TEMPLATES;
+        const made = [];
+        const used = new Set();
+        for (let i = 0; i < count; i++) {
+          let tpl = pickOne(pool);
+          let guard = 0;
+          while (used.has(tpl) && guard < 10) { tpl = pickOne(pool); guard++; }
+          used.add(tpl);
+          const g = tpl.make();
+          made.push({
+            id: store.nextId++,
+            code: "GEN-" + (store.nextId - 1),
+            subject: subject,
+            topic: (topic && topic.trim()) || g.topic,
+            difficulty: g.difficulty,
+            stem: g.stem, options: g.options, answerIndex: g.answerIndex,
+            explanation: g.explanation, keyPoint: g.keyPoint,
+            source: "ai",
+          });
+        }
+        return made;
+      }
+
+      /* ================= TAMBAH SOAL ================= */
+      function renderTambah() {
+        const subjects = subjectsOf();
+        const subjectNames = subjects.map((s) => s.name);
+        if (subjectNames.indexOf(ai.subject) < 0 && subjectNames.length > 0) ai.subject = subjectNames[0];
+        const inputCls = "field";
+        let h = '<h1 class="page">Tambah Soal</h1>';
+        h += '<p class="mt1 dim">Perbanyak bank soalmu — buat cepat pakai generator, atau tulis sendiri dari materi kuliah dan latihan dosen.</p>';
+
+        h += '<section aria-label="Buat soal dengan generator" class="aisec">' +
+          '<h2 style="font-weight:800">✨ Buat soal dengan generator</h2>' +
+          '<p class="mt1 small dim">Generator menyusun soal hitungan farmasi (molaritas, pengenceran, dosis, susut pengeringan, dan pola hitungan baku lainnya) dengan angka baru setiap kali, lengkap dengan kunci dan pembahasan langkah demi langkah yang dihitung di halaman ini. Hasilnya berlabel “AI” di bank soal — tetap cek lagi sebelum dipakai ujian beneran.</p>' +
+          '<label class="flabel" for="ai-subject">Mata kuliah</label>' +
+          '<select id="ai-subject" class="' + inputCls + '">' +
+          subjectNames.map((n) => '<option value="' + esc(n) + '"' + (ai.subject === n ? " selected" : "") + ">" + esc(n) + "</option>").join("") +
+          "</select>" +
+          '<label class="flabel" for="ai-topic">Topik (opsional)</label>' +
+          '<input id="ai-topic" type="text" class="' + inputCls + '" placeholder="cth. Farmakokinetik, Sterilisasi, Enzim…" value="' + esc(ai.topic) + '" />' +
+          '<label class="flabel" for="ai-count">Jumlah soal (1–5)</label>' +
+          '<input id="ai-count" type="number" min="1" max="5" class="' + inputCls + '" value="' + ai.count + '" />' +
+          (ai.msg ? '<p role="status" class="msg-info">' + esc(ai.msg) + "</p>" : "") +
+          '<button type="button" class="btn-amber" id="btn-gen">✨ Buatkan Soal</button></section>';
+
+        h += '<section aria-label="Tulis soal sendiri" class="mt6"><h2 style="font-weight:800">✍️ Tulis soal sendiri</h2>' +
+          '<label class="flabel" for="nq-subject">Mata kuliah</label>' +
+          '<input id="nq-subject" type="text" list="subject-suggestions" class="' + inputCls + '" placeholder="cth. Farmakologi" value="' + esc(form.subject) + '" />' +
+          '<datalist id="subject-suggestions">' +
+          subjectNames.map((n) => '<option value="' + esc(n) + '"></option>').join("") + "</datalist>" +
+          '<label class="flabel" for="nq-topic">Topik</label>' +
+          '<input id="nq-topic" type="text" class="' + inputCls + '" placeholder="cth. Farmakokinetik" value="' + esc(form.topic) + '" />' +
+          '<label class="flabel" for="nq-difficulty">Tingkat kesulitan</label>' +
+          '<select id="nq-difficulty" class="' + inputCls + '">' +
+          ["Mudah", "Sedang", "Sulit"].map((d) => '<option value="' + d + '"' + (form.difficulty === d ? " selected" : "") + ">" + d + "</option>").join("") +
+          "</select>" +
+          '<label class="flabel" for="nq-stem">Pertanyaan</label>' +
+          '<textarea id="nq-stem" rows="3" class="' + inputCls + '" placeholder="Tulis pertanyaanmu di sini…">' + esc(form.stem) + "</textarea>" +
+          '<fieldset style="border:0;padding:0;margin:1rem 0 0"><legend style="font-size:0.875rem;font-weight:700;padding:0">Pilihan jawaban &amp; kunci</legend>' +
+          '<p class="xs dim">Isi keempat pilihan, lalu pilih lingkaran di kiri pilihan yang benar.</p>';
+        form.options.forEach((opt, i) => {
+          h += '<div class="optrow"><input type="radio" name="nq-answer" data-nq-answer="' + i + '"' +
+            (form.answer === i ? " checked" : "") + ' aria-label="Jadikan pilihan ' + LETTERS[i] + ' sebagai kunci jawaban" />' +
+            '<span class="ltr">' + LETTERS[i] + '.</span>' +
+            '<input type="text" class="' + inputCls + '" data-nq-opt="' + i + '" maxlength="300" placeholder="Pilihan ' +
+            LETTERS[i] + '" aria-label="Pilihan jawaban ' + LETTERS[i] + '" value="' + esc(opt) + '" style="flex:1" /></div>';
+        });
+        h += "</fieldset>" +
+          '<label class="flabel" for="nq-explanation">Pembahasan</label>' +
+          '<textarea id="nq-explanation" rows="4" class="' + inputCls + '" placeholder="Jelaskan kenapa jawaban itu benar dan kenapa pengecohnya salah…">' + esc(form.explanation) + "</textarea>" +
+          '<label class="flabel" for="nq-keypoint">Inti hafalan (satu kalimat)</label>' +
+          '<input id="nq-keypoint" type="text" class="' + inputCls + '" placeholder="cth. Rute IV → bioavailabilitas 100%" value="' + esc(form.keyPoint) + '" />' +
+          (form.error ? '<p role="alert" class="msg-err">' + esc(form.error) + "</p>" : "") +
+          (form.ok ? '<p role="status" class="msg-ok">' + esc(form.ok) + "</p>" : "") +
+          '<button type="button" class="btn btn-accent btn-big mt4" id="btn-save-q">Simpan ke Bank Soal</button></section>';
+        h += footerHTML();
+        app.innerHTML = h;
+
+        document.getElementById("ai-subject").addEventListener("change", (e) => { ai.subject = e.target.value; });
+        document.getElementById("ai-topic").addEventListener("input", (e) => { ai.topic = e.target.value; });
+        document.getElementById("ai-count").addEventListener("input", (e) => {
+          ai.count = Math.min(5, Math.max(1, Number(e.target.value) || 3));
+        });
+        document.getElementById("btn-gen").addEventListener("click", () => {
+          const made = generateLocal(ai.subject, ai.topic, ai.count);
+          for (const q of made) store.extra.push(q);
+          saveStore();
+          ai.msg = made.length + " soal baru berlabel AI sudah ditambahkan ke bank soal " + ai.subject +
+            ". Selalu cek lagi pembahasannya ya.";
+          renderTambah();
+        });
+
+        const bind = (id, key) => {
+          document.getElementById(id).addEventListener("input", (e) => { form[key] = e.target.value; });
+        };
+        bind("nq-subject", "subject");
+        bind("nq-topic", "topic");
+        bind("nq-stem", "stem");
+        bind("nq-explanation", "explanation");
+        bind("nq-keypoint", "keyPoint");
+        document.getElementById("nq-difficulty").addEventListener("change", (e) => { form.difficulty = e.target.value; });
+        app.querySelectorAll("[data-nq-opt]").forEach((inp) =>
+          inp.addEventListener("input", (e) => {
+            form.options[Number(inp.getAttribute("data-nq-opt"))] = e.target.value;
+          }));
+        app.querySelectorAll("[data-nq-answer]").forEach((r) =>
+          r.addEventListener("change", () => { form.answer = Number(r.getAttribute("data-nq-answer")); }));
+        document.getElementById("btn-save-q").addEventListener("click", saveOwnQuestion);
+      }
+      function saveOwnQuestion() {
+        form.error = ""; form.ok = "";
+        const subject = form.subject.trim();
+        const topic = form.topic.trim();
+        const stem = form.stem.trim();
+        const options = form.options.map((o) => o.trim());
+        const explanation = form.explanation.trim();
+        const keyPoint = form.keyPoint.trim();
+        if (!subject) form.error = "Isi dulu mata kuliahnya.";
+        else if (!topic) form.error = "Isi dulu topiknya.";
+        else if (stem.length < 10) form.error = "Soalnya terlalu pendek — minimal 10 karakter.";
+        else if (options.some((o) => o.length === 0)) form.error = "Keempat pilihan jawaban harus terisi semua.";
+        else if (explanation.length < 10) form.error = "Pembahasannya terlalu pendek — minimal 10 karakter.";
+        else if (keyPoint.length < 3) form.error = "Isi inti hafalannya (minimal 3 karakter).";
+        if (form.error) { renderTambah(); return; }
+        const id = store.nextId++;
+        store.extra.push({
+          id: id, code: "SND-" + id, subject: subject, topic: topic,
+          difficulty: form.difficulty, stem: stem, options: options,
+          answerIndex: form.answer, explanation: explanation, keyPoint: keyPoint,
+          source: "tambah sendiri",
+        });
+        saveStore();
+        form.stem = ""; form.options = ["", "", "", ""]; form.answer = 0;
+        form.explanation = ""; form.keyPoint = "";
+        form.ok = "Soalmu tersimpan di bank soal. Cek di tab Bank Soal ya.";
+        renderTambah();
+      }
+
+      /* ================= NAVIGASI & MULAI ================= */
+      tabbar.querySelectorAll("[data-nav]").forEach((b) =>
+        b.addEventListener("click", () => {
+          view = b.getAttribute("data-nav");
+          bankMsg = "";
+          render();
+        }));
+      render();
+    </script>
+  </body>
+</html>
